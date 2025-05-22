@@ -22,37 +22,38 @@ async function drawMiniChart(file, elementId, rankSelector = null, updateTime = 
     const json = await res.json();
     const history = json.history.slice(-24);
 
-    const chartEl = document.querySelector(elementId); // .graph 요소
+    const chartEl = document.querySelector(elementId);
     if (!chartEl) return;
 
-    const chartWrapper = chartEl.closest(".chart"); // .chart (예: .melon_top)
+    const chartWrapper = chartEl.closest(".chart");
     const chartNoneEl = chartWrapper?.querySelector(".chart_none");
 
-    // 데이터 없음 처리
     if (!history.length) {
         chartEl.classList.add("hide");
         if (chartNoneEl) chartNoneEl.classList.remove("hide");
         return;
     }
 
-    // 데이터 있음이면 미리 상태 초기화
     chartEl.classList.remove("hide");
     if (chartNoneEl) chartNoneEl.classList.add("hide");
 
-    // 이하 기존 렌더링 및 시각화 로직
     const labels = history.map(e => formatTimestampToLabel(e.timestamp));
-    const chartLimit = file.includes("genie") ? 200 : 100;
+
+    // ✅ 플랫폼별 chartLimit 설정
+    let chartLimit = 100;
+    if (file.includes("genie")) chartLimit = 200;
+    if (file.includes("vibe")) chartLimit = 300;
 
     const series = history.map(e => {
         if (e.rank === null || e.rank > chartLimit) return null;
         return chartLimit + 1 - e.rank;
     });
     const visualSeries = series.map(v => v === null ? 0.5 : v);
+
     const latest = history[history.length - 1];
     const prev = history.length >= 2 ? history[history.length - 2] : null;
 
     let rankText = "", spanText = "", rankClass = "";
-
     const latestRank = latest.rank;
     const prevRank = prev?.rank ?? null;
 
@@ -133,6 +134,7 @@ async function drawMiniChart(file, elementId, rankSelector = null, updateTime = 
     const chart = new ApexCharts(chartEl, options);
     chart.render();
 }
+
 drawMiniChart("melon_top.json", "#melonTop100Chart", ".melon_top .rank", true);
 drawMiniChart("melon_hot.json", "#melonHot100Chart", ".melon_hot .rank");
 drawMiniChart("genie.json", "#genieChart", ".genie .rank");

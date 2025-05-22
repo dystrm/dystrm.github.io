@@ -1,38 +1,74 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from config import TITLE, ARTIST
 from utils import log, save_chart
-import time
 
 def get_vibe_top100():
     try:
-        url = "https://vibe.naver.com/chart/total"
-        options = Options()
-        options.add_argument("--headless")
-        options.add_argument("--disable-gpu")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-extensions")
-        options.add_argument("--window-size=1920,1080")
-        driver = webdriver.Chrome(options=options)
-        driver.get(url)
-        time.sleep(3)
-        soup = BeautifulSoup(driver.page_source, "html.parser")
-        driver.quit()
-        rows = soup.select("div.tracklist table tbody tr")
-        for row in rows:
-            rank_tag = row.select_one("td.rank span.text")
-            title_tag = row.select_one("td.song .link_text span")
-            artist_tag = row.select_one("td.song .artist_sub")
-            rank = rank_tag.text.strip() if rank_tag else ""
-            title = title_tag.text.strip().lower() if title_tag else ""
-            artist = artist_tag["title"].strip().lower() if artist_tag and artist_tag.has_attr("title") else ""
-            if TITLE.lower() in title and ARTIST.lower() in artist:
-                log(f"[VIBE] '{TITLE}' 현재 순위: {rank}")
-                save_chart("vibe", int(rank))
-                return
-        log(f"[VIBE] '{TITLE}' 순위 없음")
-        save_chart("vibe", None)
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.goto("https://vibe.naver.com/chart/total")
+            page.wait_for_timeout(3000)
+
+            # 구독 팝업 닫기
+            try:
+                page.locator("a[role=button] >> text=팝업 닫기").click(timeout=3000)
+                log("[VIBE] 구독 팝업 닫음 ✅")
+            except:
+                log("[VIBE] 구독 팝업 없음 또는 닫기 실패 ❌")
+
+            # 방해 요소 제거
+            page.evaluate("""
+                document.querySelector(".floating_bar")?.remove();
+            """)
+            page.wait_for_timeout(500)
+
+            # 조건 충족을 위한 스크롤
+            for _ in range(5):
+                page.mouse.wheel(0, 2000)
+                page.wait_for_timeout(400)
+
+            # 더보기 클릭
+            page.evaluate("""
+                const btn = document.querySelector(".btn_more_list a.link");
+                if (btn) {
+                    btn.scrollIntoView({ behavior: "smooth", block: "center" });
+                    setTimeout(() => btn.click(), 300);
+                }
+            """)
+            page.wait_for_timeout(4000)
+
+            # 300곡 로딩 대기
+            try:
+                page.wait_for_function(
+                    """() => document.querySelectorAll("div.tracklist table tbody tr").length >= 300""",
+                    timeout=10000
+                )
+                log("[VIBE] 300곡 로딩 완료 ✅")
+            except:
+                log("[VIBE] 300곡 로딩 실패 ⚠️")
+
+            soup = BeautifulSoup(page.content(), "html.parser")
+            browser.close()
+
+            rows = soup.select("div.tracklist table tbody tr")
+            for row in rows:
+                try:
+                    rank = row.select_one("td.rank span.text").text.strip()
+                    title = row.select_one("td.song .link_text span").text.strip().lower()
+                    artist = row.select_one("td.song .artist_sub").get("title", "").strip().lower()
+
+                    if TITLE.lower() in title and ARTIST.lower() in artist:
+                        log(f"[VIBE] '{TITLE}' 현재 순위: {rank}")
+                        save_chart("vibe", int(rank))
+                        return
+                except:
+                    continue
+
+            log(f"[VIBE] '{TITLE}' 순위 없음")
+            save_chart("vibe", None)
+
     except Exception as e:
         log(f"[VIBE] 크롤링 실패 ❌: {e}")
         save_chart("vibe", None)
