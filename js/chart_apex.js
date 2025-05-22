@@ -18,7 +18,7 @@ function extractHourLabel(isoString) {
 }
 
 async function drawMiniChart(file, elementId, rankSelector = null, updateTime = false) {
-    const res = await fetch(`../js/data/${file}`);
+    const res = await fetch(`./js/data/${file}`);
     const json = await res.json();
     const history = json.history.slice(-24);
 
