@@ -1,0 +1,245 @@
+@charset 'utf-8';
+
+:root {
+    --default-width: 1200px;
+}
+
+body {
+    &.scroll-lock {
+        overflow: hidden;
+        height: 100%;
+    }
+}
+.wrap {
+    position: relative;
+    width: 100%;
+}
+
+.header_wrapper {
+    z-index: 100;
+    @include fixed(0, 0);
+    width: 100%;
+    background: $hd-bg-color;
+    border-bottom: 1px solid $bd-color;
+
+    .inner {
+        position: relative;
+        width: var(--default-width);
+        margin: 0 auto;
+        padding: 20px 0;
+        @include flex(center, flex-start, 60px);
+
+        h1 {
+            a {
+                display: block;
+                font-size: 0;
+                @include img_logo;
+                width: 60px;
+                height: 35px;
+            }
+        }
+
+        nav {
+            ul {
+                @include flex(center, flex-start, 12px);
+
+                li {
+                    transition: all 0.3s ease-in-out;
+
+                    a {
+                        display: block;
+                        @include ftM;
+                        font-size: rem(14);
+                        color: $ft-sub-color;
+                        transition: all 0.3s ease-in-out;
+                        padding: 8px 16px;
+
+                        &:hover {
+                            color: $ft-main-color;
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            @include ftB;
+                            background: rgba($point-color, 0.2);
+                            color: $point-color;
+                            border-radius: 16px;
+                        }
+
+                    }
+                }
+            }
+
+            .top_btn {
+                @include centerY($right: 20px);
+                @include ftM;
+                font-size: rem(14);
+                color: $ft-sub-color;
+                transition: all 0.3s ease-in-out;
+                padding: 8px 16px;
+                border: 1px solid $bd-color;
+                border-radius: 16px;
+            }
+        }
+    }
+}
+
+.footer_wrapper {
+    position: relative;
+    width: 100%;
+    background: $ft-bg-color;
+    border-top: 1px solid $bd-color;
+
+    .inner {
+        position: relative;
+        width: var(--default-width);
+        padding: 50px 0;
+        margin: 0 auto;
+
+        .twitter {
+            @include flex(center, center);
+            background: $ft-btn-bg-color;
+            border: 1px solid $bd-color;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            transition: 0.3s all ease-in-out;
+            margin-bottom: 20px;
+
+            &:hover {
+                background: $ft-btn-hv-color;
+            }
+
+            i {
+                display: block;
+                @include ico_x;
+                background: $ft-main-color;
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        p {
+            @include ftR;
+            font-size: rem(12);
+            line-height: 1.4;
+            color: $ft-sub-color;
+
+            a {
+                color: $ft-sub-color;
+            }
+
+            &:last-child {
+                margin-top: 20px;
+            }
+        }
+
+
+    }
+}
+
+.ico_melon {
+    &::before {
+        @include ico_melon;
+    }
+}
+
+.ico_genie {
+    &::before {
+        @include ico_genie;
+    }
+}
+
+.ico_bugs {
+    &::before {
+        @include ico_bugs;
+    }
+}
+
+.ico_vibe {
+    &::before {
+        @include ico_vibe;
+    }
+}
+
+.ico_flo {
+    &::before {
+        @include ico_flo;
+    }
+}
+
+.ico_youtube {
+    &::before {
+        @include ico_youtube;
+    }
+}
+
+.ico_kakao {
+    &::before {
+        @include ico_kakao;
+    }
+}
+
+
+@media only screen and (max-width: 1240px) {
+    :root {
+        --default-width: 1160px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    :root {
+        --default-width: 960px;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    :root {
+        --default-width: 860px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    :root {
+        --default-width: 100%;
+    }
+
+    .header_wrapper {
+        .inner {
+            padding: 20px;
+            @include flex(center, flex-start, 20px);
+        }
+    }
+
+    .footer_wrapper {
+        .inner {
+            padding: 50px 20px;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    :root {
+        font-size: 57% !important;
+    }
+
+    .header_wrapper {
+        .inner {
+            padding: 14px 20px;
+        }
+    }
+
+    .footer_wrapper {
+        .inner {
+            padding: 30px 20px;
+        }
+    }
+}
+
+
+@media screen and (max-width:320px) {
+    :root {
+        font-size: 52.5% !important;
+    }
+}

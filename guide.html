@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>도영 스트리밍</title>
+    <meta property="og:url" content="https://dystrm.kr/">
+    <meta property="og:title" content="NCT도영 스트리밍">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://dystrm.github.io/images/meta.png">
+    <meta property="og:description" content="NCT도영 스트리밍 website">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+
+    <link type="text/css" href="./css/common.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/sub.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="header_wrapper">
+            <div class="inner">
+                <h1><a href="./index">도영 스트리밍</a></h1>
+                <nav>
+                    <ul>
+                        <li class="">
+                            <a href="./index">메인</a>
+                        </li>
+                        <li class="active">
+                            <a href="./guide">가이드</a>
+                        </li>
+                    </ul>
+                    <button type="button" class="top_btn oneclick_btn">원클릭 스트리밍</button>
+                </nav>
+            </div>
+        </header>
+        <div class="contents sub">
+            <div class="sub_nav">
+                <div class="menu_depth_01">
+                    <div class="flex">
+                        <ul>
+                            <li class="">스트리밍 가이드</li>
+                            <li class="">음악방송 가이드</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="menu_depth_02">
+                    <!-- 스트리밍 -->
+                    <ul class="show">
+                        <li class="active">공통</li>
+                        <li>멜론</li>
+                        <li>지니</li>
+                        <li>벅스</li>
+                        <li>플로</li>
+                        <li>바이브</li>
+                        <li>카카오뮤직</li>
+                    </ul>
+                    <!-- 음악방송 -->
+                    <ul class="">
+                        <li class="">음악방송 차트</li>
+                        <li class="">라디오 신청</li>
+                        <li>뮤비 스트리밍</li>
+                        <li>뮤빗</li>
+                        <li>올차트</li>
+                        <li>아이돌챔프</li>
+                        <li>링크</li>
+                        <li>하이어</li>
+                        <li>V 컬러링</li>
+                        <li>응원법</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sub_contents">
+                <div class="category_box">
+                    <!-- 공통 -->
+                    <div class="box show">
+                        <ul>
+                            <li class="tit">스트리밍 가이드 - 공통</li>
+                            <li class="">스트리밍 플레이리스트</li>
+                            <li>음원사이트 추천</li>
+                            <li>음소거</li>
+                            <li>동시 스트리밍</li>
+                            <li>끊김방지</li>
+                            <li>듀얼넘버</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="">
+                                <img src="./images/guide/streaming/common/playlist.jpeg" alt="스트리밍 플레이리스트">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/common/recommend.jpeg" alt="음원 사이트 추천 가이드">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/common/volume_01.png" alt="음소거 가이드 iOS">
+                                <img src="./images/guide/streaming/common/volume_02.png" alt="음소거 가이드 안드로이드">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/common/same_time.png" alt="동시 스트리밍 가이드">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/common/stop_01.jpg" alt="끊김방지 스트리밍 가이드">
+                                <img src="./images/guide/streaming/common/stop_02.jpg" alt="끊김방지 스트리밍 가이드">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/common/dual_number.jpeg" alt="듀얼넘버 생성 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 멜론 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit ico_melon">스트리밍 가이드 - 멜론</li>
+                            <li class="active">스트리밍</li>
+                            <li>아이디 생성</li>
+                            <li>음원 다운로드</li>
+                            <li>뮤비 다운로드</li>
+                            <li>선물하기</li>
+                            <li>끊김방지</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/streaming/melon/streaming.jpg" alt="스트리밍 가이드 멜론">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/melon/id_01.jpeg" alt="아이디생성 가이드 멜론">
+                                <img src="./images/guide/streaming/melon/id_02.jpeg" alt="아이디생성 가이드 멜론">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/melon/down.jpg" alt="음원 다운로드 멜론">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/melon/mv_01.jpg" alt="뮤비 다운로드 멜론">
+                                <img src="./images/guide/streaming/melon/mv_02.jpg" alt="뮤비 다운로드 멜론">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/melon/gift.jpeg" alt="선물하기 가이드 멜론">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/melon/stop.jpg" alt="끊김방지 가이드 멜론">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 지니 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit ico_genie">스트리밍 가이드 - 지니</li>
+                            <li class="active">스트리밍</li>
+                            <li>아이디 생성</li>
+                            <li>음원 다운로드</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/streaming/genie/streaming.jpg" alt="스트리밍 가이드 지니">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/genie/id_01.jpeg" alt="아이디생성 가이드 지니">
+                                <img src="./images/guide/streaming/genie/id_02.jpeg" alt="아이디생성 가이드 지니">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/genie/down.jpg" alt="음원 다운로드 지니">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 벅스 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit ico_bugs">스트리밍 가이드 - 벅스</li>
+                            <li class="active">스트리밍</li>
+                            <li>아이디 생성</li>
+                            <li>음원 다운로드</li>
+                            <li>뮤비 다운로드</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/streaming/bugs/streaming.jpg" alt="스트리밍 가이드 벅스">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/bugs/id.jpeg" alt="아이디생성 가이드 벅스">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/bugs/down.jpg" alt="음원 다운로드 벅스">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/bugs/mv.jpg" alt="음원 다운로드 벅스">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 플로 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit ico_flo">스트리밍 가이드 - 플로</li>
+                            <li class="active">스트리밍</li>
+                            <li>아이디 생성</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/streaming/flo/streaming.jpg" alt="스트리밍 가이드 플로">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/flo/id.jpeg" alt="아이디생성 가이드 플로">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 바이브 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit ico_vibe">스트리밍 가이드 - 바이브</li>
+                            <li class="active">스트리밍</li>
+                            <li>아이디 생성</li>
+                            <li>음원 다운로드</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/streaming/vibe/streaming.jpg" alt="스트리밍 가이드 바이브">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/vibe/id.jpeg" alt="아이디생성 가이드 바이브">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/vibe/down.jpg" alt="음원 다운로드 가이드 바이브">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 카카오뮤직 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit ico_kakao">스트리밍 가이드 - 카카오뮤직</li>
+                            <li class="active">아이디 생성</li>
+                            <li>음원 다운로드</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/streaming/kakao/id_01.jpeg" alt="아이디생성 가이드 카카오뮤직">
+                                <img src="./images/guide/streaming/kakao/id_02.jpeg" alt="아이디생성 가이드 카카오뮤직">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/streaming/kakao/down.jpg" alt="음원 다운로드 가이드 카카오뮤직">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="category_box">
+                    <!-- 음악방송 차트 -->
+                    <div class="box show">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - <br class="mo_br">음악방송 차트</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/broadcast/chart_01.jpeg" alt="음악방송 차트 가이드">
+                                <img src="./images/guide/broadcast/chart_02.jpeg" alt="음악방송 차트 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 라디오 신청 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - <br class="mo_br">라디오 신청</li>
+                            <li class="active">전체보기</li>
+                            <li class="">KBS</li>
+                            <li class="">MBC</li>
+                            <li class="">SBS</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <div class="radio_box">
+                                    <a class="radio_btn kbs" target="_blank" rel="noreferrer" href="sms:%238910?body=도영의 안녕,우주 신청합니다.">KBS</a>
+                                    <a class="radio_btn mbc" target="_blank" rel="noreferrer" href="sms:%238000?body=도영의 안녕,우주 신청합니다.">MBC</a>
+                                    <a class="radio_btn sbs" target="_blank" rel="noreferrer" href="sms:%231077?body=도영의 안녕,우주 신청합니다.">SBS</a>
+                                </div>
+                                <img src="./images/guide/broadcast/radio_01.jpeg" alt="라디오 가이드">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/broadcast/radio_02.jpeg" alt="라디오 가이드">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/broadcast/radio_03.jpeg" alt="라디오 가이드">
+                            </div>
+                            <div class="">
+                                <img src="./images/guide/broadcast/radio_04.jpeg" alt="라디오 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 유튜브 스트리밍 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - <br class="mo_br">뮤비 스트리밍</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/broadcast/mv.png" alt="뮤비 스트리밍 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 뮤빗 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - 뮤빗</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/broadcast/mubeat.jpeg" alt="뮤빗 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 올차트 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - 올차트</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/broadcast/allchart.jpeg" alt="올차트 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 아이돌챔프 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - 아이돌챔프</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/broadcast/idolchamp.jpeg" alt="아이돌챔프 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 링크 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - 링크</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/broadcast/linc.jpeg" alt="링크 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 하이어 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - 하이어</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/broadcast/higher.jpeg" alt="하이어 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- v컬러링 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - V 컬러링</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="show">
+                                <img src="./images/guide/broadcast/v.jpeg" alt="v 컬러링 가이드">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 응원법 -->
+                    <div class="box">
+                        <ul>
+                            <li class="tit">음악방송 가이드 - 응원법</li>
+                        </ul>
+                        <div class="image_box">
+                            <div class="">
+                                <img src="./images/guide/broadcast/cheering.jpg" alt="응원법 가이드">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer_wrapper">
+            <div class="inner">
+                <a href="https://x.com/DOYOUNG_STREAM" target="_blank" class="twitter"><i>도영 스트리밍팀 트위터</i></a>
+                <p>개발 문의 : <a href="mailto:dystrm.dev@gmail.com">dystrm.dev@gmail.com </a></p>
+                <p>스트리밍팀: <a href="mailto:doyoungstreamcrew@gmail.com">doyoungstreamcrew@gmail.com </a></p>
+                <p>Copyright © 2024 Team DOYOUNG STREAM All rights reserved.</p>
+                <p>Last Update : 2025.05.21</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- oneclick PC modal-->
+    <div class="modal" id="oneclickPCContainer">
+    </div>
+    
+    <!-- oneclick MO modal-->
+    <div class="modal" id="oneclickMOContainer">
+    </div>
+</body>
+
+</html>

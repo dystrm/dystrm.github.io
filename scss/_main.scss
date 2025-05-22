@@ -1,0 +1,985 @@
+@charset 'utf-8';
+
+.contents {
+    position: relative;
+
+    &.main {
+        width: var(--default-width);
+        margin: 0 auto;
+        padding: 75px 0 40px;
+    }
+
+    .sc_main {
+        padding: 30px 0;
+
+        .banner_wrap {
+            @include flex(flex-start, space-between);
+            height: 440px;
+
+            .left {
+                position: relative;
+                width: 850px;
+                height: 100%;
+                @include flex(center, space-between, 12px, column);
+
+                .main_banner {
+                    position: relative;
+                    width: 100%;
+                    height: 380px;
+                    border-radius: 12px;
+                    overflow: hidden;
+
+                    .mainSwiper {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+
+                        .swiper-wrapper {
+                            .swiper-slide {
+                                position: relative;
+                                display: block;
+                                flex-shrink: 0;
+                                width: 100%;
+                                height: 100%;
+                                transition-property: transform;
+
+                                a {
+                                    width: 100%;
+                                    height: 100%;
+
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                    }
+                                }
+                            }
+                        }
+
+                        .control_btn {
+                            z-index: 10;
+                            @include absolute($bottom: 20px, $right: 20px);
+                            padding: 8px 12px;
+                            border-radius: 16px;
+                            background: rgba(0, 0, 0, 0.3);
+                            @include flex(center, center, 4px);
+
+                            .pagination {
+                                @include ftR;
+                                font-size: rem(12);
+                                color: $ft-reverse-color;
+                                text-align: center;
+
+                                span {
+                                    @include ftR;
+                                    font-size: rem(12);
+                                    color: $ft-reverse-color;
+                                }
+                            }
+
+                            .next_btn {
+                                @include ico_arrow_right;
+                                width: 12px;
+                                height: 12px;
+                                background: $ft-reverse-color;
+                                cursor: pointer;
+                                mask-size: cover;
+                            }
+
+                            .prev_btn {
+                                @include ico_arrow_left;
+                                width: 12px;
+                                height: 12px;
+                                background: $ft-reverse-color;
+                                cursor: pointer;
+                                mask-size: cover;
+                            }
+                        }
+                    }
+                }
+
+                .btn_box {
+                    position: relative;
+                    width: 100%;
+                    height: 48px;
+                    @include flex(flex-start, space-between);
+
+                    .main_btn {
+                        position: relative;
+                        @include flex(center, flex-start, 6px);
+                        padding: 4px 10px;
+                        background: $main-btn-bg-color;
+                        width: calc(100% / 4 - 12px);
+                        height: 48px;
+                        border-radius: 4px;
+                        @include ftM;
+                        font-size: rem(14);
+                        color: $ft-main-color;
+                        transition: 0.3s all ease-in-out;
+
+                        &::before {
+                            position: relative;
+                            @include content;
+                            width: 26px;
+                            height: 26px;
+                            background: white;
+                            border-radius: 6px;
+                        }
+
+                        &::after {
+                            @include centerY($left: 14px);
+                            @include content;
+                            width: 18px;
+                            height: 18px;
+                            background: $point-color;
+                        }
+
+                        &:hover {
+                            background: $main-btn-hv-color;
+                        }
+
+                        &.ico_radio {
+                            &::after {
+                                @include ico_radio;
+                            }
+                        }
+
+                        &.ico_click {
+                            &::after {
+                                @include ico_click;
+                            }
+                        }
+
+                        &.ico_coin {
+                            &::after {
+                                @include ico_coin;
+                            }
+                        }
+
+                        &.ico_gift {
+                            &::after {
+                                @include ico_gift;
+                            }
+                        }
+
+                        &.ico_trophy {
+                            &::after {
+                                @include ico_trophy;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right {
+                position: relative;
+                width: calc(100% - 850px - 20px);
+                height: 100%;
+                @include flex(center, space-between, 20px, column);
+
+                .sub_banner {
+                    width: 100%;
+                    height: 320px;
+                    border-radius: 12px;
+                    overflow: hidden;
+
+                    .subSwiper {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+
+                        .swiper-wrapper {
+                            .swiper-slide {
+                                position: relative;
+                                display: block;
+                                flex-shrink: 0;
+                                width: 100%;
+                                height: 100%;
+                                transition-property: transform;
+
+                                a {
+                                    display: block;
+                                    width: 100%;
+                                    height: 100%;
+
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: contain;
+                                    }
+                                }
+                            }
+                        }
+
+                        .control_btn {
+                            z-index: 10;
+                            @include centerX($bottom: 20px);
+                            @include flex(center, center, 4px);
+
+                            .pagination {
+                                @include ftR;
+                                font-size: rem(12);
+                                color: $ft-main-color;
+                                text-align: center;
+
+                                span {
+                                    @include ftR;
+                                    font-size: rem(12);
+                                    color: $ft-main-color;
+                                }
+                            }
+
+                            .next_btn {
+                                @include ico_arrow_right;
+                                width: 12px;
+                                height: 12px;
+                                background: $ft-main-color;
+                                cursor: pointer;
+                                mask-size: cover;
+                            }
+
+                            .prev_btn {
+                                @include ico_arrow_left;
+                                width: 12px;
+                                height: 12px;
+                                background: $ft-main-color;
+                                cursor: pointer;
+                                mask-size: cover;
+                            }
+                        }
+                    }
+                }
+
+                .playlist {
+                    width: 100%;
+                    height: calc(100% - 320px - 20px);
+                    border-radius: 12px;
+                    overflow: hidden;
+                    padding: 20px;
+                    cursor: pointer;
+                    background: rgba($albumn-color, 0.2);
+
+                    @include flex(center, space-between);
+
+                    .album {
+                        position: relative;
+                        @include flex(center, center, 16px);
+
+                        .cover {
+                            position: relative;
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 50%;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            background-position: center;
+
+                            &::after {
+                                @include centerXY;
+                                @include content;
+                                @include ico_play_circle;
+                                width: 32px;
+                                height: 32px;
+                                background: rgba(0, 0, 0, 0.35);
+                            }
+                        }
+
+                        .skip_back {
+                            &::before {
+                                @include centerY($left: -5px);
+                                @include content;
+                                width: 30px;
+                                height: 30px;
+                                background: white;
+                                border-radius: 50%;
+                            }
+
+                            &::after {
+                                @include content;
+                                @include ico_skip_back;
+                                width: 16px;
+                                height: 16px;
+                                background: $albumn-color;
+                            }
+                        }
+
+                        .skip_forward {
+                            &::before {
+                                @include centerY($right: -5px);
+                                @include content;
+                                width: 30px;
+                                height: 30px;
+                                background: white;
+                                border-radius: 50%;
+                            }
+
+                            &::after {
+                                @include content;
+                                @include ico_skip_forward;
+                                width: 16px;
+                                height: 16px;
+                                background: $albumn-color;
+                            }
+                        }
+                    }
+
+                    .info {
+                        width: calc(100% - 144px - 20px);
+                        height: 100%;
+                        @include flex(flex-start, center, 0, column);
+
+                        .tit {
+                            @include ftM;
+                            font-size: rem(14);
+                            color: $ft-main-color;
+                        }
+
+                        .singer,
+                        .date {
+                            @include ftR;
+                            font-size: rem(10);
+                            color: $ft-sub-color;
+                            margin-top: 4px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sc {
+        margin-top: 16px;
+        position: relative;
+        width: 100%;
+        @include flex(flex-start, space-between);
+
+        .box_tit {
+            @include ftM;
+            font-size: rem(16);
+            color: $ft-main-color;
+            @include flex(center, flex-start, 6px);
+            margin-bottom: 16px;
+
+            &::before {
+                @include content;
+                width: 20px;
+                height: 20px;
+                background: $point-color;
+            }
+        }
+
+        .left {
+            position: relative;
+            width: 40%;
+            @include flex(flex-start, flex-start, 12px, column);
+
+            .box {
+                position: relative;
+                background: white;
+                border-radius: 8px;
+                border: 1px solid $bd-color;
+                padding: 20px 12px;
+                width: 100%;
+
+                &:first-of-type {
+                    .box_tit {
+                        &::before {
+                            @include ico_music;
+                        }
+                    }
+                }
+
+                &:last-of-type {
+                    .box_tit {
+                        &::before {
+                            @include ico_play;
+                        }
+                    }
+                }
+
+                .btn_box {
+                    @include flex(center, space-between, 12px);
+                    flex-wrap: wrap;
+                }
+
+                .go_btn {
+                    position: relative;
+                    @include flex(center, flex-start, 6px);
+                    padding: 8px 10px;
+                    background: $main-btn-bg-color;
+                    width: calc(100% / 3 - 12px);
+                    border-radius: 6px;
+                    @include ftM;
+                    font-size: rem(14);
+                    color: $ft-main-color;
+                    text-align: left;
+                    transition: 0.3s all ease-in-out;
+
+                    &::before {
+                        @include content;
+                        width: 26px;
+                        height: 26px;
+                        border-radius: 6px;
+                    }
+
+                    &::after {
+                        @include content;
+                        @include ico_arrow_right;
+                        width: 10px;
+                        height: 10px;
+                        background: $ft-main-color;
+                        @include centerY($right: 10px);
+                    }
+
+                    &:hover {
+                        background: $main-btn-hv-color;
+                    }
+                }
+
+                .youtube_box {
+                    position: relative;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    width: 100%;
+                    height: 250px;
+
+                    iframe {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .count_box {
+                    margin-top: 20px;
+                    @include flex(center, center, 20px);
+
+                    div {
+                        position: relative;
+                        @include flex(center, center, 8px);
+
+                        p {
+                            &:first-child {
+                                @include ftR;
+                                font-size: rem(14);
+                                color: $ft-main-color;
+                            }
+
+                            &.count {
+                                @include ftM;
+                                font-size: rem(20);
+                                color: $ft-main-color;
+                            }
+                        }
+
+                        &:first-of-type {
+                            padding-right: 20px;
+                            border-right: 1px solid $bd-color;
+                        }
+                    }
+                }
+            }
+        }
+
+        .right {
+            width: calc(100% - 40% - 20px);
+            @include flex(flex-start, flex-start, 12px, column);
+
+            .box {
+                background: white;
+                border-radius: 8px;
+                border: 1px solid $bd-color;
+                padding: 20px 12px;
+                width: 100%;
+
+                .box_tit {
+                    .time {
+                        @include ftR;
+                        font-size: rem(12);
+                        color: $ft-sub-color;
+                    }
+                }
+
+                &.music_chart {
+                    position: relative;
+
+                    .box_tit {
+                        &::before {
+                            @include ico_chart;
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+
+                    .song {
+                        @include absolute($top: 26px, $right: 20px);
+                        @include ftR;
+                        font-size: rem(12);
+                        color: $ft-sub-color;
+                    }
+
+                    .chart_box {
+                        .melon {
+                            @include flex(center, space-between, 20px);
+                            flex-wrap: wrap;
+
+                            .chart {
+                                width: calc(100% / 3 - 15px);
+                            }
+
+                            margin-bottom: 10px;
+                        }
+
+                        .other {
+                            @include flex(center, space-between, 10px);
+                            flex-wrap: wrap;
+
+                            .chart {
+                                width: calc(100% / 2 - 10px);
+                            }
+                        }
+
+                        .chart {
+                            position: relative;
+                            height: 100px;
+                            padding: 12px;
+                            border-radius: 12px;
+                            background: rgba(0, 0, 0, 0.015);
+                            overflow: hidden;
+                            @include flex(flex-start, space-between);
+
+                            .chart_tit {
+                                @include absolute($top : 12px, $left: 12px);
+                                @include ftM;
+                                font-size: rem(14);
+                                color: #999999;
+                                @include flex(center, flex-start, 4px);
+
+                                &::before {
+                                    @include content;
+                                    width: 20px;
+                                    height: 20px;
+                                    border-radius: 50%;
+                                }
+                            }
+
+                            .rank {
+                                margin-top: 28px;
+                                @include ftB;
+                                font-weight: 600;
+                                font-size: rem(24);
+                                color: $ft-main-color;
+
+                                span {
+                                    @include ftM;
+                                    font-size: rem(14);
+                                }
+                            }
+
+                            .graph {
+                                width: 60%;
+
+                                &.hide {
+                                    display: none;
+                                }
+
+                                .custom_tooltip {
+                                    background: white;
+                                    padding: 8px 12px;
+
+                                    div {
+                                        &.date {
+                                            @include ftR;
+                                            font-size: rem(12);
+                                            color: $ft-sub-color;
+                                        }
+
+                                        &.rank_count {
+                                            margin-top: 4px;
+                                            @include ftB;
+                                            font-size: rem(14);
+                                            color: $ft-main-color;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .chart_none {
+                                @include centerX($bottom: 0);
+                                @include flex(center, center);
+                                width: 100%;
+                                height: 80%;
+                                @include ftM;
+                                font-size: rem(14);
+                                color: $ft-main-color;
+                                text-align: center;
+                                word-break: keep-all;
+
+                                &.hide {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.week_vote {
+                    .top {
+                        margin-bottom: 6px;
+                        @include flex(center, space-between);
+
+                        .box_tit {
+                            margin-bottom: 0;
+
+                            &::before {
+                                @include ico_trophy;
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+
+                        .go_vote {
+                            @include ftM;
+                            font-size: rem(12);
+                            color: $ft-main-color;
+                            border-radius: 20px;
+                            border: 1px solid $bd-color;
+                            padding: 6px 10px;
+                            text-align: center;
+                            transition: all 0.3s ease-in-out;
+
+                            &:hover {
+                                background: $main-btn-hv-color;
+                            }
+                        }
+                    }
+
+                    .vote_box {
+                        @include flex(flex-start, space-between, 0, column);
+
+                        &.hide {
+                            display: none;
+                        }
+
+                        .top_info {
+                            width: 100%;
+                            @include flex(center, flex-start, 20px);
+
+                            .week {
+                                @include ftM;
+                                font-size: rem(12);
+                                color: $ft-sub-color;
+                                border-radius: 20px;
+                                border: 1px solid $bd-color;
+                                padding: 4px 8px;
+                                text-align: center;
+                            }
+
+                            .remain {
+                                @include flex(center, flex-start, 6px);
+                                @include ftM;
+                                font-size: rem(14);
+                                color: $ft-sub-color;
+
+                                span {
+                                    @include ftM;
+                                    font-size: rem(22);
+                                    color: $ft-main-color;
+                                }
+                            }
+                        }
+
+                        .bottom_info {
+                            margin-top: 6px;
+                            @include flex(center, flex-start, 20px);
+                            background: rgba(0, 0, 0, 0.025);
+                            border-radius: 8px;
+                            padding: 8px 10px;
+                            width: 100%;
+
+                            .rank {
+                                @include ftB;
+                                font-weight: 600;
+                                font-size: rem(24);
+                                color: $ft-main-color;
+
+                                &::after {
+                                    content: '위';
+                                }
+                            }
+
+                            .song_info {
+                                @include flex(center, flex-start, 20px);
+
+                                .album {
+                                    width: 36px;
+                                    height: 36px;
+                                    border-radius: 4px;
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                    background-position: center;
+                                }
+
+                                .singer {
+                                    @include ftM;
+                                    font-size: rem(12);
+                                    color: $ft-main-color;
+                                }
+
+                                .title {
+                                    @include ftM;
+                                    font-size: rem(16);
+                                    color: $ft-main-color;
+                                }
+                            }
+
+                            .vote_count {
+                                @include flex(center, flex-start, 10px);
+
+                                .percent {
+                                    @include ftB;
+                                    font-weight: 600;
+                                    font-size: rem(24);
+                                    color: $point-color;
+                                }
+
+                                .vote {
+                                    @include ftB;
+                                    font-weight: 600;
+                                    font-size: rem(24);
+                                    color: $point-color;
+                                }
+
+                                .desc {
+                                    @include ftM;
+                                    font-size: rem(12);
+                                    color: $ft-sub-color;
+                                }
+                            }
+                        }
+                    }
+
+                    .vote_none {
+                        height: 70px;
+                        background: rgba(0, 0, 0, 0.04);
+                        border-radius: 8px;
+                        @include flex(center, center);
+
+                        &.hide {
+                            display: none;
+                        }
+
+                        p {
+                            @include ftM;
+                            font-size: rem(14);
+                            color: $ft-main-color;
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.apexcharts-xaxistooltip {
+    display: none !important;
+}
+
+@media only screen and (max-width: 1240px) {
+    .contents {
+        .sc_main {
+            .banner_wrap {
+                height: auto;
+
+                .left {
+                    width: 70%;
+
+                    .main_banner {
+                        aspect-ratio: 850/380;
+                        height: auto;
+                    }
+                }
+
+                .right {
+                    width: calc(100% - 70% - 20px);
+                    height: 100%;
+
+                    .sub_banner {
+                        height: auto;
+                        aspect-ratio: 330/320;
+                    }
+
+                    .playlist {
+                        aspect-ratio: 330/100;
+                        height: auto;
+                        padding: 12px;
+
+                        @include flex(center, space-between);
+
+                        .album {
+                            width: 50%;
+                        }
+
+                        .info {
+                            width: calc(100% - 50% - 20px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 스마트폰 가로, 태블릿 : 481px ~ 768px
+@media only screen and (max-width: 768px) {
+    .contents {
+        .sc_main {
+            padding: 20px;
+
+            .banner_wrap {
+                height: auto;
+
+                .left {
+                    width: 100%;
+                }
+
+                .right {
+                    display: none;
+                }
+            }
+        }
+
+        .sc {
+            margin-top: 0;
+            padding: 0 20px;
+            flex-direction: column;
+            gap: 20px;
+
+            .left {
+                width: 100%;
+                @include flex(flex-start, space-between, 0, row);
+
+                .box {
+                    &:first-of-type {
+                        width: 45%;
+                    }
+
+                    &:last-of-type {
+                        width: 52%;
+                    }
+
+                    .go_btn {
+                        width: calc(50% - 6px);
+                    }
+
+                    .youtube_box {
+                        height: auto;
+                    }
+
+                    .count_box {
+                        margin-top: 0;
+                        @include absolute($top: 23px, $right: 20px);
+                        gap: 10px;
+
+                        div {
+                            p {
+                                &:first-child {
+                                    font-size: rem(13);
+                                }
+
+                                &.count {
+                                    font-size: rem(16);
+                                }
+                            }
+
+                            &:first-of-type {
+                                padding-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// 스마트폰 세로: 0px ~ 480px
+@media only screen and (max-width: 480px) {
+    .contents {
+        &.main {
+            padding: 64px 0 20px;
+        }
+
+        .sc_main {
+            padding: 20px;
+
+            .banner_wrap {
+                height: auto;
+
+                .left {
+                    width: 100%;
+
+                    .btn_box {
+                        height: auto;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        .main_btn {
+                            width: calc(50% - 5px);
+                        }
+                    }
+                }
+
+                .right {
+                    display: none;
+                }
+            }
+        }
+
+        .sc {
+            .left {
+                width: 100%;
+                @include flex(flex-start, flex-start, 10px, column);
+
+                .box {
+                    &:first-of-type {
+                        width: 100%;
+                    }
+
+                    &:last-of-type {
+                        width: 100%;
+                    }
+
+                    .go_btn {
+                        width: calc(50% - 6px);
+                    }
+
+                    .youtube_box {
+                        height: 200px;
+                    }
+                }
+            }
+
+            .right {
+                width: 100%;
+
+                .box {
+                    &.music_chart {
+                        .chart_box {
+                            .melon {
+                                gap: 10px;
+
+                                .chart {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

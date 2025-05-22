@@ -1,0 +1,404 @@
+@charset 'utf-8';
+
+.contents {
+    &.sub {
+        position: relative;
+        margin: 0 auto;
+        padding: 75px 0 40px;
+    }
+
+    .sub_nav {
+        position: relative;
+        width: 100%;
+        height: 100px;
+
+        .menu_depth_01 {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid $bd-color;
+
+            .flex {
+                max-width: var(--default-width);
+                height: 100%;
+                margin: 0 auto;
+                @include flex(center, space-between);
+            }
+
+            ul {
+                position: relative;
+                @include flex(center, flex-start, 16px);
+
+                >li {
+                    flex-shrink: 0;
+                    height: 100%;
+                    cursor: pointer;
+                    @include ftM;
+                    font-size: rem(14);
+                    color: $ft-sub-color;
+                    transition: all 0.3s ease-in-out;
+                    line-height: 50px;
+                    padding: 0 4px;
+
+                    &.active {
+                        color: $ft-main-color;
+                        border-bottom: 2px solid $point-color;
+                    }
+
+                    &:hover {
+                        color: $point-color;
+                    }
+                }
+            }
+
+            .oneclick_btn {
+                cursor: pointer;
+                @include ftM;
+                font-size: rem(14);
+                color: $ft-sub-color;
+                transition: all 0.3s ease-in-out;
+                border: 1px solid $bd-color;
+                padding: 8px 12px;
+                border-radius: 24px;
+
+                &:hover {
+                    background: $main-btn-hv-color;
+                    color: $ft-main-color;
+                }
+            }
+        }
+
+        .menu_depth_02 {
+            @include absolute($top: 50px, $left:0);
+            width: 100%;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.02);
+
+            ul {
+                display: none;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 16px;
+                position: relative;
+                height: 100%;
+                max-width: var(--default-width);
+                margin: 0 auto;
+
+                &.show {
+                    display: flex;
+                }
+
+                li {
+                    flex-shrink: 0;
+                    height: 100%;
+                    cursor: pointer;
+                    @include ftM;
+                    font-size: rem(14);
+                    color: $ft-sub-color;
+                    transition: all 0.3s ease-in-out;
+                    line-height: 50px;
+                    padding: 0 10px;
+
+                    &.active {
+                        color: $ft-main-color;
+                        @include ftB;
+                    }
+
+                    &:hover {
+                        color: $point-color;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .sub_contents {
+        width: var(--default-width);
+        margin: 0 auto;
+        padding: 30px 0;
+
+        .category_box {
+            display: none;
+
+            &.show {
+                display: block;
+            }
+
+            .box {
+                display: none;
+
+                &.show {
+                    @include flex(flex-start, space-between);
+                }
+
+                ul {
+                    width: 20%;
+
+                    li {
+                        width: 100%;
+                        cursor: pointer;
+                        @include ftR;
+                        font-size: rem(14);
+                        color: $ft-main-color;
+                        transition: all 0.3s ease-in-out;
+                        padding: 16px 0 16px 16px;
+                        border-left: 1px solid $bd-color;
+                        margin-left: 10px;
+
+                        &.tit {
+                            @include ftM;
+                            font-size: rem(16);
+                            color: $ft-main-color;
+                            padding-left: 0;
+                            border: none;
+                            margin-left: 0;
+                            cursor: default;
+                            pointer-events: none;
+                            @include flex(center, flex-start, 4px);
+
+                            .mo_br {
+                                display: none;
+                            }
+
+                            &::after {
+                                @include content;
+                                width: 24px;
+                                height: 24px;
+                                border-radius: 50%;
+                                aspect-ratio: 1/1;
+                            }
+
+                            &.ico_melon {
+                                &::after {
+                                    @include ico_melon;
+                                }
+                            }
+
+                            &.ico_genie {
+                                &::after {
+                                    @include ico_genie;
+                                }
+                            }
+
+                            &.ico_bugs {
+                                &::after {
+                                    @include ico_bugs;
+                                }
+                            }
+
+                            &.ico_vibe {
+                                &::after {
+                                    @include ico_vibe;
+                                }
+                            }
+
+                            &.ico_flo {
+                                &::after {
+                                    @include ico_flo;
+                                }
+                            }
+
+                            &.ico_kakao {
+                                &::after {
+                                    @include ico_kakao;
+                                }
+                            }
+                        }
+
+                        &.active {
+                            @include ftM;
+                            color: $point-color;
+                            background: $sub-btn-bg-color;
+                            border-radius: 0 4px 4px 0;
+                        }
+
+                        &:hover {
+                            @include ftM;
+                            color: $point-color;
+                        }
+                    }
+                }
+
+                .image_box {
+                    width: calc(100% - 20% - 30px);
+
+                    >div {
+                        width: 100%;
+                        display: none;
+
+                        &.show {
+                            display: block;
+                        }
+
+                        img {
+                            display: block;
+                            width: 100%;
+                            max-width: 780px;
+                            margin: 0 auto;
+                        }
+
+                        .radio_box {
+                            @include flex(center, center, 12px);
+                            width: 100%;
+                            max-width: 780px;
+                            margin: 0 auto 20px;
+
+                            a {
+                                position: relative;
+                                @include flex(center, flex-start, 6px);
+                                padding: 4px 10px;
+                                background: $main-btn-bg-color;
+                                height: 48px;
+                                border-radius: 4px;
+                                @include ftM;
+                                font-size: rem(14);
+                                color: $ft-main-color;
+                                transition: 0.3s all ease-in-out;
+                                width: calc(100% / 3 - 6px);
+
+                                &::before {
+                                    @include content;
+                                    width: 26px;
+                                    height: 26px;
+                                    border-radius: 6px;
+                                }
+
+                                &:hover {
+                                    background: $main-btn-hv-color;
+                                }
+
+                                &.mbc {
+                                    &::before {
+                                        @include ico_mbc;
+                                    }
+                                }
+
+                                &.sbs {
+                                    &::before {
+                                        @include ico_sbs;
+                                    }
+                                }
+
+                                &.kbs {
+                                    &::before {
+                                        @include ico_kbs;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 스마트폰 가로, 태블릿 : 481px ~ 768px
+@media only screen and (max-width: 768px) {
+    .contents {
+        .sub_nav {
+            .menu_depth_01 {
+                .flex {
+                    padding: 0 20px;
+                }
+            }
+
+            .menu_depth_02 {
+                ul {
+                    padding: 0 20px;
+                    max-width: 768px;
+                    overflow-y: auto;
+                    -ms-overflow-style: none;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .sub_contents {
+            padding: 30px 20px;
+
+            .category_box {
+                .box {
+                    ul {
+                        width: 30%;
+
+                        .tit {
+                            word-break: keep-all;
+                            line-height: 1.4;
+
+                            .mo_br {
+                                display: block !important;
+                            }
+                        }
+                    }
+
+                    .image_box {
+                        width: calc(100% - 30% - 20px);
+
+                        >div {
+                            img {
+                                max-width: 768px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 스마트폰 세로: 0px ~ 480px
+@media screen and (max-width:480px) {
+    .contents {
+        &.sub {
+            padding: 64px 0 20px;
+        }
+
+        .sub_nav {
+            .menu_depth_02 {
+                ul {
+                    max-width: 480px;
+                }
+            }
+        }
+
+        .sub_contents {
+            padding: 0 20px;
+
+            .category_box {
+                .box {
+                    &.show {
+                        @include flex(flex-start, flex-start, 10px, column);
+                    }
+
+                    ul {
+                        width: 100%;
+
+                        .tit {
+                            word-break: keep-all;
+                            line-height: 1.4;
+
+                            .mo_br {
+                                display: none !important;
+                            }
+                        }
+                    }
+
+                    .image_box {
+                        width: 100%;
+
+                        >div {
+                            img {
+                                max-width: 480px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

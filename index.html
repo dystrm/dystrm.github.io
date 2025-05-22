@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>도영 스트리밍</title>
+    <meta property="og:url" content="https://dystrm.kr/">
+    <meta property="og:title" content="NCT도영 스트리밍">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://dystrm.github.io/images/meta.png">
+    <meta property="og:description" content="NCT도영 스트리밍 website">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+
+    <link type="text/css" href="./css/common.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/main.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="header_wrapper">
+            <div class="inner">
+                <h1><a href="./index">도영 스트리밍</a></h1>
+                <nav>
+                    <ul>
+                        <li class="active">
+                            <a href="./index">메인</a>
+                        </li>
+                        <li>
+                            <a href="./guide">가이드</a>
+                        </li>
+                    </ul>
+                    <button type="button" class="top_btn playlist_btn">플레이리스트</button>
+                </nav>
+            </div>
+        </header>
+        <div class="contents main">
+            <section class="sc_main">
+                <div class="banner_wrap">
+                    <div class="left">
+                        <div class="main_banner">
+                            <div class="mainSwiper">
+                                <ul class="swiper-wrapper">
+                                    <li class="swiper-slide">
+                                        <a href="https://x.com/DOYOUNG_STREAM/status/1924392620157284691"
+                                            target="_blank">
+                                            <img src="./images/common/main_banner_01.jpg">
+                                        </a>
+                                    </li>
+                                    <li class="swiper-slide">
+                                        <a href="https://x.com/DOYOUNG_STREAM/status/1924449974349430823"
+                                            target="_blank">
+                                            <img src="./images/common/main_banner_02.jpg">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="control_btn">
+                                    <div class="prev_btn"></div>
+                                    <div class="pagination"></div>
+                                    <div class="next_btn"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn_box">
+                            <button type="button" class="main_btn ico_click">원클릭 스트리밍</button>
+                            <button type="button" class="main_btn ico_radio">원클릭 라디오</button>
+                            <a class="main_btn ico_coin" href=""
+                                target="_blank">멜론 충전하기</a>
+                            <a class="main_btn ico_gift"
+                                href="https://www.melon.com/mymusic/messagepresent/mymusicpresent_insert.htm"
+                                target="_blank">멜론 선물하기</a>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="sub_banner">
+                            <div class="subSwiper">
+                                <ul class="swiper-wrapper">
+                                    <li class="swiper-slide">
+                                        <a href="https://x.com/DOYOUNG_STREAM/status/1903001253309018472"
+                                            target="_blank">
+                                            <img
+                                                src="https://pbs.twimg.com/media/GmjRjdVbkAAOOaq?format=jpg&name=4096x4096">
+                                        </a>
+                                    </li>
+                                    <li class="swiper-slide">
+                                        <a href="https://x.com/DOYOUNG_STREAM/status/1922585821577637923"
+                                            target="_blank">
+                                            <img
+                                                src="https://pbs.twimg.com/media/Gq5lnYqbAAAW4HJ?format=jpg&name=large">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="control_btn">
+                                    <div class="prev_btn"></div>
+                                    <div class="pagination"></div>
+                                    <div class="next_btn"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playlist">
+                            <div class="album">
+                                <div class="skip_back"></div>
+                                <div class="cover" style="background-image: url(./images/common/img_cover.jpg);">
+                                </div>
+                                <div class="skip_forward"></div>
+                            </div>
+                            <div class="info">
+                                <p class="tit">시리도록 눈부신</p>
+                                <div>
+                                    <p class="singer">도영 (DOYOUNG)</p>
+                                    <p class="date">2024.11.06</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="sc">
+                <div class="left">
+                    <div class="box">
+                        <p class="box_tit">음원사이트 바로가기</p>
+                        <div class="btn_box">
+                            <a class="go_btn ico_melon" href="https://melon.com/" target="_blank">멜론</a>
+                            <a class="go_btn ico_genie" href="https://www.genie.co.kr/" target="_blank">지니</a>
+                            <a class="go_btn ico_bugs" href="https://music.bugs.co.kr/" target="_blank">벅스</a>
+                            <a class="go_btn ico_flo" href="https://www.music-flo.com/" target="_blank">플로</a>
+                            <a class="go_btn ico_vibe" href="https://vibe.naver.com/" target="_blank">바이브</a>
+                            <a class="go_btn ico_youtube" href="https://www.youtube.com/watch?v=Hf2wjEU2rzo"
+                                target="_blank">유튜브</a>
+                        </div>
+                    </div>
+                    <div claSs="box">
+                        <p class="box_tit">YouTube 추이</p>
+                        <div class="youtube_box"><iframe src="https://www.youtube.com/embed/Hf2wjEU2rzo"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                        <div class="count_box">
+                            <div>
+                                <p>조회수</p>
+                                <p class="count view">123만</p>
+                            </div>
+                            <div>
+                                <p>좋아요</p>
+                                <p class="count like">123만</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="box music_chart">
+                        <p class="box_tit">실시간 차트 현황 <span class="time">00:00 기준</span></p>
+                        <p class="song">안녕, 우주 (Memory)</p>
+                        <div class="chart_box">
+                            <div class="melon">
+                                <div class="chart melon_top">
+                                    <div>
+                                        <p class="chart_tit ico_melon">멜론 TOP100</p>
+                                        <p class="rank"></p>
+                                    </div>
+                                    <div class="graph" id="melonTop100Chart"></div>
+                                    <div class="chart_none">
+                                        <p>차트 데이터가 없습니다❌</p>
+                                    </div>
+                                </div>
+                                <div class="chart melon_hot">
+                                    <div>
+                                        <p class="chart_tit ico_melon">멜론 HOT100</p>
+                                        <p class="rank"></p>
+                                    </div>
+                                    <div class="graph" id="melonHot100Chart"></div>
+                                    <div class="chart_none">
+                                        <p>차트 데이터가 없습니다❌</p>
+                                    </div>
+                                </div>
+                                <div class="chart melon_realtime">
+                                    <div>
+                                        <p class="chart_tit ico_melon">멜론 실시간</p>
+                                        <p class="rank"></p>
+                                    </div>
+                                    <div class="graph" id="melonRealTimeChart"></div>
+                                    <div class="chart_none">
+                                        <p>차트 데이터가 없습니다❌</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="other">
+                                <div class="chart genie">
+                                    <div>
+                                        <p class="chart_tit ico_genie">지니</p>
+                                        <p class="rank"></p>
+                                    </div>
+                                    <div class="graph" id="genieChart"></div>
+                                    <div class="chart_none">
+                                        <p>차트 데이터가 없습니다❌</p>
+                                    </div>
+                                </div>
+                                <div class="chart bugs">
+                                    <div>
+                                        <p class="chart_tit ico_bugs">벅스</p>
+                                        <p class="rank"></p>
+                                    </div>
+                                    <div class="graph" id="bugsChart"></div>
+                                    <div class="chart_none">
+                                        <p>차트 데이터가 없습니다❌</p>
+                                    </div>
+                                </div>
+                                <div class="chart vibe">
+                                    <div>
+                                        <p class="chart_tit ico_vibe">바이브</p>
+                                        <p class="rank"></p>
+                                    </div>
+                                    <div class="graph" id="vibeChart"></div>
+                                    <div class="chart_none">
+                                        <p>차트 데이터가 없습니다❌</p>
+                                    </div>
+                                </div>
+                                <div class="chart flo">
+                                    <div>
+                                        <p class="chart_tit ico_flo">플로</p>
+                                        <p class="rank"></p>
+                                    </div>
+                                    <div class="graph" id="floChart"></div>
+                                    <div class="chart_none">
+                                        <p>차트 데이터가 없습니다❌</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <script src="./js/chart_apex.js"></script>
+                        </div>
+                    </div>
+                    <div class="box week_vote">
+                        <div class="top">
+                            <p class="box_tit">멜론 주간인기상 현황 <span class="time">00:00 기준</span></p>
+                            <a class="go_vote ico_trophy" href="https://www.melon.com/melonaward/weekAward.htm"
+                                target="_blank">투표 바로가기</a>
+                        </div>
+                        <div class="vote_box hide">
+                            <div class="top_info">
+                                <p class="week">5월 3주차</p>
+                                <p class="remain">남은기간 <span>04일</span></p>
+                            </div>
+                            <div class="bottom_info">
+                                <p class="rank">6</p>
+                                <div class="song_info">
+                                    <div class="album"
+                                        style="background-image: url(https://cdnimg.melon.co.kr/cm2/album/images/114/69/495/11469495_20240419182508_500.jpg/melon/resize/260/quality/80/optimize);">
+                                    </div>
+                                    <p class="singer">도영</p>
+                                    <p class="title">poppop</p>
+                                </div>
+                                <div class="vote_count">
+                                    <p class="percent">2%</p>
+                                    <p class="vote">2,540 득표</p>
+                                    <p class="desc">(5위와 775표차)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vote_none">
+                            <p>🗳️진행중인 투표가 없습니다❌</p>
+                        </div>
+                        <script src="./js/melon_award.js"></script>
+                    </div>
+            </section>
+        </div>
+        <footer class="footer_wrapper">
+            <div class="inner">
+                <a href="https://x.com/DOYOUNG_STREAM" target="_blank" class="twitter"><i>도영 스트리밍팀 트위터</i></a>
+                <p>개발 문의 : <a href="mailto:dystrm.dev@gmail.com">dystrm.dev@gmail.com </a></p>
+                <p>스트리밍팀: <a href="mailto:doyoungstreamcrew@gmail.com">doyoungstreamcrew@gmail.com </a></p>
+                <p>Copyright © 2024 Team DOYOUNG STREAM All rights reserved.</p>
+                <p>Last Update : 2025.05.21</p>
+            </div>
+        </footer>
+    </div>
+    <!-- playlist modal-->
+    <div class="modal" id="playlistContainer">
+    </div>
+
+    <!-- oneclick PC modal-->
+    <div class="modal" id="oneclickPCContainer">
+    </div>
+
+    <!-- oneclick MO modal-->
+    <div class="modal" id="oneclickMOContainer">
+    </div>
+
+    <!-- oneclick radio modal-->
+    <div class="modal" id="oneclickRadioContainer">
+    </div>
+
+    <!-- swiper -->
+    <script>
+        var swiper = new Swiper(".mainSwiper", {
+            slidesPerView: 1,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".pagination",
+                type: "fraction",
+            },
+            navigation: {
+                nextEl: ".next_btn",
+                prevEl: ".prev_btn",
+            },
+        });
+        var swiper = new Swiper(".subSwiper", {
+            slidesPerView: 1,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".pagination",
+                type: "fraction",
+            },
+            navigation: {
+                nextEl: ".next_btn",
+                prevEl: ".prev_btn",
+            },
+        });
+    </script>
+</body>
+
+</html>

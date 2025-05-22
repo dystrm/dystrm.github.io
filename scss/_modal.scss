@@ -1,0 +1,212 @@
+@charset 'utf-8';
+
+.modal {
+    @include centerX(fixed, $top: 0);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    z-index: 1000;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    .modal_contents {
+        @include centerXY;
+        width: 100%;
+        height: 100%;
+        padding: 12px 20px;
+        background: white;
+        border-radius: 12px;
+
+        &.type_img {
+            max-width: 500px;
+            max-height: 88%;
+
+            .modal_body {
+                height: calc(100% - 70px);
+                overflow-y: auto;
+
+                img {
+                    display: block;
+                    width: 100%;
+                    object-fit: contain;
+                    margin: 0 auto;
+                    text-align: center;
+                }
+            }
+        }
+
+        &.type_click {
+            max-width: 500px;
+            height: auto;
+
+            .btn_box {
+                width: 100%;
+                @include flex(flex-start, flex-start, 12px, column);
+
+                &.mo {
+                    div {
+                        flex-wrap: wrap;
+
+                        a {
+                            &::before {
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+
+                        &.melon,
+                        &.vibe {
+                            a {
+                                width: calc(100% / 3 - 12px);
+                            }
+                        }
+                    }
+                }
+
+                div {
+                    @include flex(center, center, 12px);
+                    width: 100%;
+
+                    a {
+                        position: relative;
+                        @include flex(center, flex-start, 6px);
+                        padding: 4px 10px;
+                        background: $main-btn-bg-color;
+                        height: 48px;
+                        border-radius: 4px;
+                        @include ftM;
+                        font-size: rem(14);
+                        color: $ft-main-color;
+                        transition: 0.3s all ease-in-out;
+                        width: calc(100% / 3 - 6px);
+
+                        &::before {
+                            @include content;
+                            width: 26px;
+                            height: 26px;
+                            border-radius: 6px;
+                        }
+
+                        &:hover {
+                            background: $main-btn-hv-color;
+                        }
+                    }
+
+                    &.melon {
+                        a {
+                            width: calc(100% / 4 - 6px);
+                        }
+                    }
+
+                }
+
+                &.radio {
+                    @include flex(center, center, 12px);
+                    width: 100%;
+
+                    a {
+                        position: relative;
+                        @include flex(center, flex-start, 6px);
+                        padding: 4px 10px;
+                        background: $main-btn-bg-color;
+                        height: 48px;
+                        border-radius: 4px;
+                        @include ftM;
+                        font-size: rem(14);
+                        color: $ft-main-color;
+                        transition: 0.3s all ease-in-out;
+                        width: calc(100% / 3 - 6px);
+
+                        &::before {
+                            @include content;
+                            width: 26px;
+                            height: 26px;
+                            border-radius: 6px;
+                        }
+
+                        &:hover {
+                            background: $main-btn-hv-color;
+                        }
+
+                        &.mbc {
+                            &::before {
+                                @include ico_mbc;
+                            }
+                        }
+
+                        &.sbs {
+                            &::before {
+                                @include ico_sbs;
+                            }
+                        }
+
+                        &.kbs {
+                            &::before {
+                                @include ico_kbs;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .modal_head {
+            position: relative;
+            @include flex(center, space-between);
+            padding-bottom: 10px;
+            border-bottom: 1px solid $bd-color;
+
+            .modal_tit {
+                @include ftM;
+                font-size: rem(16);
+                color: $ft-main-color;
+
+                .pc_txt {
+                    display: block;
+                    font-size: rem(12);
+                    color: $red;
+                    margin-top: 12px;
+                    &::before {
+                        content: '*';
+                    }
+                }
+            }
+
+            .modal_close_btn {
+                font-size: 0;
+
+                &::before {
+                    content: '\00d7';
+                    color: $ft-main-color;
+                    font-size: rem(34);
+                }
+            }
+        }
+
+        .modal_body {
+            padding: 20px 0;
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .modal {
+        .modal_contents {
+            &.type_img {
+                max-width: 90%;
+            }
+
+            &.type_click {
+                max-width: 90%;
+            }
+        }
+    }
+}

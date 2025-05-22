@@ -1,0 +1,131 @@
+@charset 'utf-8';
+
+/* image */
+@mixin image($name, $path: "../images/", $format:"png", $bgXY:center, $bg:'',$folder:'') {
+    background: #{$bg} url("#{$path}#{$folder}/#{$name}.#{$format}") no-repeat $bgXY;
+}
+
+/* icon */
+@mixin icon ($name, $path: "../images/icon/", $format:"svg", $bgXY:center) {
+    background: url("#{$path}#{$name}.#{$format}") no-repeat $bgXY;
+    font-size: 0;
+}
+
+@mixin iconThem ($name, $path: "../images/icon/", $format:"svg") {
+    mask-image : url("#{$path}#{$name}.#{$format}");
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    font-size: 0;
+}
+
+@mixin img_logo {
+    @include image($name:'img_logo', $folder:'common');
+    background-size: contain;
+}
+
+@mixin ico_melon {
+    @include icon($name:'ico_melon', $format: 'png');
+    background-size: 100%;
+}
+
+@mixin ico_genie {
+    @include icon($name:'ico_genie', $format: 'png');
+    background-size: 100%;
+}
+
+@mixin ico_bugs {
+    @include icon($name:'ico_bugs', $format: 'png');
+    background-size: 100%;
+}
+
+@mixin ico_flo {
+    @include icon($name:'ico_flo', $format: 'png');
+    background-size: 100%;
+}
+
+@mixin ico_vibe {
+    @include icon($name:'ico_vibe', $format: 'png');
+    background-size: 100%;
+}
+
+@mixin ico_youtube {
+    @include icon($name:'ico_youtube', $format: 'png');
+    background-size: 100%;
+}
+
+@mixin ico_kakao {
+    @include icon($name:'ico_kakao', $format: 'png');
+    background-size: 100%;
+}
+
+@mixin ico_x {
+    @include iconThem($name:'ico_x');
+}
+
+@mixin ico_arrow_left {
+    @include iconThem($name:'ico_arrow_left');
+}
+
+@mixin ico_arrow_right {
+    @include iconThem($name:'ico_arrow_right');
+}
+
+@mixin ico_music {
+    @include iconThem($name:'ico_music');
+}
+
+@mixin ico_play {
+    @include iconThem($name:'ico_play');
+}
+
+@mixin ico_click {
+    @include iconThem($name:'ico_click');
+}
+
+@mixin ico_radio {
+    @include iconThem($name:'ico_radio');
+}
+
+@mixin ico_gift {
+    @include iconThem($name:'ico_gift');
+}
+
+@mixin ico_coin {
+    @include iconThem($name:'ico_coin');
+}
+
+@mixin ico_trophy {
+    @include iconThem($name:'ico_trophy');
+}
+
+@mixin ico_skip_forward {
+    @include iconThem($name:'ico_skip_forward');
+}
+
+@mixin ico_skip_back {
+    @include iconThem($name:'ico_skip_back');
+}
+
+@mixin ico_play_circle {
+    @include iconThem($name:'ico_play_circle');
+}
+
+@mixin ico_chart {
+    @include iconThem($name:'ico_chart');
+}
+
+@mixin ico_mbc {
+    @include icon($name:'ico_mbc', $format: 'png');
+    background-size: 100%;
+}
+
+@mixin ico_sbs {
+    @include icon($name:'ico_sbs', $format: 'jpg');
+    background-size: 100%;
+}
+
+@mixin ico_kbs {
+    @include icon($name:'ico_kbs', $format: 'png');
+    background-size: 100%;
+}
