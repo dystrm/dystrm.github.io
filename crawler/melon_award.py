@@ -10,7 +10,7 @@ import time
 import re
 
 def save_award_chart(rank, title, percent, vote, desc, week=None, remain=None):
-    DATA_DIR = "../js/data"
+    data_dir = "../js/data"
     os.makedirs(data_dir, exist_ok=True)
     path = os.path.join(data_dir, "melon_award.json")
 

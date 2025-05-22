@@ -8,7 +8,7 @@ def log(msg):
     print(f"[{datetime.datetime.now().isoformat()}] {msg}")
 
 def save_chart(platform, rank):
-    DATA_DIR = "../js/data"
+    data_dir = "../js/data"
     os.makedirs(data_dir, exist_ok=True)
     filename = f"{platform}.json"
     path = os.path.join(data_dir, filename)
