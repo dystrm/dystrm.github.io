@@ -44,17 +44,20 @@ def push_to_github():
     commit_msg = f"[자동업데이트] 차트 데이터 갱신: {now}"
 
     try:
-        # 변경사항이 있는지 먼저 확인
-        result = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+        # 먼저 add 실행
+        subprocess.run(["git", "add", "."], check=True)
 
-        if not result.stdout.strip():
-            print("✅ Git 변경 사항 없음. 푸시 생략")
+        # add 이후 실제로 stage 된 변경사항이 있는지 확인
+        result = subprocess.run(["git", "diff", "--cached", "--quiet"])
+        if result.returncode == 0:
+            print("✅ Git 변경 사항 없음 (스테이징된 변경 없음). 푸시 생략")
             return
 
-        subprocess.run(["git", "add", "."], check=True)
+        # 변경사항이 있다면 커밋 및 푸시
         subprocess.run(["git", "commit", "-m", commit_msg], check=True)
         subprocess.run(["git", "push"], check=True)
         print("✅ GitHub 푸시 완료!")
+
     except subprocess.CalledProcessError as e:
         print(f"❌ GitHub 푸시 실패 (Git 명령 오류): {e}")
     except Exception as e:
