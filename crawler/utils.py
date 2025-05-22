@@ -40,21 +40,24 @@ def save_chart(platform, rank):
 
 
 def push_to_github():
+    # 루트 디렉토리 이동
+    os.chdir(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     commit_msg = f"[자동업데이트] 차트 데이터 갱신: {now}"
 
     try:
-        # 먼저 add 실행
+        # add 실행
         subprocess.run(["git", "add", "."], check=True)
 
-        # add 이후 실제로 stage 된 변경사항이 있는지 확인
+        # 변경사항 확인 (스테이징된 것 기준)
         result = subprocess.run(["git", "diff", "--cached", "--quiet"])
         if result.returncode == 0:
             print("✅ Git 변경 사항 없음 (스테이징된 변경 없음). 푸시 생략")
             return
 
-        # 변경사항이 있다면 커밋 및 푸시
-        subprocess.run(["git", "commit", "-m", commit_msg], check=True)
+        # 커밋 및 푸시
+        subprocess.run(["git", "commit", "-m", commit_msg], check=True, stdout=subprocess.DEVNULL)
         subprocess.run(["git", "push"], check=True)
         print("✅ GitHub 푸시 완료!")
 
