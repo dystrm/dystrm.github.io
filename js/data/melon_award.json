@@ -50,6 +50,16 @@
       "desc": null,
       "week": "5월 4주차",
       "remain": null
+    },
+    {
+      "timestamp": "2025-05-26T18:04:38.815475",
+      "rank": 2,
+      "title": "Fly Up",
+      "percent": "19%",
+      "vote": "195득표",
+      "desc": "(1위와 211표차)",
+      "week": "5월 5주차",
+      "remain": "6일"
     }
   ]
 }
