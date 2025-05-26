@@ -1,5 +1,5 @@
 async function renderMelonAwardBox() {
-  const res = await fetch("../js/data/melon_award.json");
+  const res = await fetch("./js/data/melon_award.json");
   const json = await res.json();
   const latest = json.history[json.history.length - 1];
 
