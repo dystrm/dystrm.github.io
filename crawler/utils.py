@@ -5,6 +5,7 @@ import os
 import requests
 from config import TITLE, ARTIST
 from config import DISCORD_WEBHOOK_URL
+from config import DISCORD_ALERT_ENABLED
 
 def log(msg):
     print(f"[{datetime.datetime.now().isoformat()}] {msg}")
@@ -43,6 +44,9 @@ def save_chart(platform, rank):
         
 
 def send_discord_alert(message):
+    if not DISCORD_ALERT_ENABLED:
+        return
+    
     try:
         res = requests.post(DISCORD_WEBHOOK_URL, json={"content": f"🚨 {message}"})
         res.raise_for_status()

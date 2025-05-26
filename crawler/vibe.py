@@ -6,7 +6,10 @@ from utils import log, save_chart
 def get_vibe_top100():
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
+            browser = p.chromium.launch(
+                headless=True,
+                args=["--no-sandbox", "--disable-dev-shm-usage"]
+            )
             page = browser.new_page()
             page.goto("https://vibe.naver.com/chart/total")
             page.wait_for_timeout(3000)
