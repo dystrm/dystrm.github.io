@@ -15,7 +15,7 @@ TWITTER_API = {
 
 DATA_DIR = "../js/data"
 
-DISCORD_ALERT_ENABLED = True
+DISCORD_ALERT_ENABLED = False
 
 # 디스코드
 DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1375260382540857366/dmWJxQBOfTxWzpKrMuos2pXPKZ2JJ_vONb82tD8d8_xykiSOqlnrrgVnphFod6ocaRbt"  
