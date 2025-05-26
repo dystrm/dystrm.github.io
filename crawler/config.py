@@ -14,3 +14,6 @@ TWITTER_API = {
 }
 
 DATA_DIR = "../js/data"
+
+# 디스코드
+DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1375260382540857366/dmWJxQBOfTxWzpKrMuos2pXPKZ2JJ_vONb82tD8d8_xykiSOqlnrrgVnphFod6ocaRbt"  

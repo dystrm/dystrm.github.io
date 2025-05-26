@@ -2,7 +2,9 @@ import datetime
 import subprocess
 import json
 import os
+import requests
 from config import TITLE, ARTIST
+from config import DISCORD_WEBHOOK_URL
 
 def log(msg):
     print(f"[{datetime.datetime.now().isoformat()}] {msg}")
@@ -38,6 +40,16 @@ def save_chart(platform, rank):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
+        
+
+def send_discord_alert(message):
+    try:
+        res = requests.post(DISCORD_WEBHOOK_URL, json={"content": f"🚨 {message}"})
+        res.raise_for_status()
+        print("📢 디스코드 알림 전송 완료")
+    except Exception as e:
+        print(f"❌ 디스코드 전송 실패: {e}")
+
 
 def push_to_github():
     # 루트 디렉토리 이동
@@ -62,6 +74,14 @@ def push_to_github():
         print("✅ GitHub 푸시 완료!")
 
     except subprocess.CalledProcessError as e:
-        print(f"❌ GitHub 푸시 실패 (Git 명령 오류): {e}")
+        error_msg = f"GitHub 푸시 실패 ❌\n{e}"
+        print(f"❌ {error_msg}")
+        send_discord_alert(error_msg)
+
     except Exception as e:
-        print(f"❌ GitHub 푸시 실패 (일반 오류): {e}")
+        error_msg = f"GitHub 일반 오류 ❌\n{e}"
+        print(f"❌ {error_msg}")
+        send_discord_alert(error_msg)
+
+if __name__ == "__main__":
+    send_discord_alert("✅ 디스코드 알림 테스트 메시지\n이 메시지가 보이면 연동 정상 확인.")
