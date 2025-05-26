@@ -72,6 +72,7 @@ def push_to_github():
         subprocess.run(["git", "commit", "-m", commit_msg], check=True, stdout=subprocess.DEVNULL)
         subprocess.run(["git", "push"], check=True)
         print("✅ GitHub 푸시 완료!")
+        send_discord_alert("✅ GitHub 푸시 완료!")
 
     except subprocess.CalledProcessError as e:
         error_msg = f"GitHub 푸시 실패 ❌\n{e}"

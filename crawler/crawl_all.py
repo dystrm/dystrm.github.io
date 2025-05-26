@@ -15,13 +15,14 @@ def safe_run(name, func):
         send_discord_alert(f"{name} 크롤링 실패 ❌\n{e}")
 
 def run_all():
-    melon("melon_top")
-    melon("melon_hot")
-    melon_realtime()
-    get_genie_top200()
-    get_bugs_top100()
-    get_flo_top100()
-    get_vibe_top100()
-    melon_award()
+    safe_run("멜론 Top", lambda: melon("melon_top"))
+    safe_run("멜론 Hot", lambda: melon("melon_hot"))
+    safe_run("멜론 실시간", melon_realtime)
+    safe_run("지니", get_genie_top200)
+    safe_run("벅스", get_bugs_top100)
+    safe_run("플로", get_flo_top100)
+    safe_run("바이브", get_vibe_top100)
+    safe_run("멜론 어워드", melon_award)
+
 if __name__ == "__main__":
     run_all()
