@@ -2,6 +2,8 @@ from datetime import datetime
 from x_poster import post_to_x
 from youtube import get_youtube_view_count
 from utils import push_to_github
+from config import DISCORD_ALERT_ENABLED
+from utils import send_discord_alert
 from config import TITLE
 import json
 import os
@@ -27,16 +29,14 @@ def load_latest_rank(platform):
         if platform == "vibe":
             today = datetime.now().date().isoformat()
             today_data = [d for d in data if d["timestamp"].startswith(today)]
-
             if len(today_data) >= 2:
-                return today_data[-1]["rank"], today_data[0]["rank"]  # 최신 vs 오늘 아침
+                return today_data[-1]["rank"], today_data[0]["rank"]
             elif len(today_data) == 1:
                 rank = today_data[0]["rank"]
-                return rank, rank  # 변동 없음
+                return rank, rank
             else:
                 return None, None
 
-        # 일반 차트는 마지막 2개 비교
         if len(data) >= 2:
             return data[-1]["rank"], data[-2]["rank"]
         elif len(data) == 1:
@@ -45,7 +45,6 @@ def load_latest_rank(platform):
             return None, None
     except:
         return None, None
-
 
 def format_change(curr, prev):
     if curr is None:
@@ -61,7 +60,7 @@ def format_change(curr, prev):
         return f"(🔺{abs(diff)})"
 
 def build_message():
-    now = datetime.now().strftime("%Y-%m-%d %H:00")
+    now = datetime.now().strftime("%Y-%m-%d %H시 차트")
     lines = [f"💙 \"{TITLE}\" {now}"]
 
     for key, label in PLATFORMS.items():
@@ -79,9 +78,25 @@ def build_message():
 def main():
     tweet = build_message()
     print("[DEBUG] 트윗 내용:\n", tweet)
-    post_to_x(tweet)
+
+    now_hour = datetime.now().hour
+    if 2 <= now_hour < 7:
+        print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 트윗 생략.")
+
+        # ✅ 디스코드 알림도 보냄
+        if DISCORD_ALERT_ENABLED:
+            send_discord_alert(
+                f"😴 {now_hour}시 차트 트윗은 자동 생략되었습니다.\n(리밋 방지를 위해 새벽 2~6시에는 트윗이 올라가지 않아요)\n\n📢 트윗 예정 내용:\n{tweet}"
+            )
+    else:
+        try:
+            post_to_x(tweet)
+        except Exception as e:
+            print(f"[X] 트윗 전송 중 오류 발생: {e}")
+            if DISCORD_ALERT_ENABLED:
+                send_discord_alert(f"❌ 트윗 전송 중 예외 발생: {e}\n\n📢 트윗 내용:\n{tweet}")
+
     push_to_github()
 
 if __name__ == "__main__":
     main()
-
