@@ -6,11 +6,11 @@ VIDEO_ID = "Hf2wjEU2rzo"
 
 # === X.com(Twitter) API 키 ===
 TWITTER_API = {
-    "consumer_key": "9oF6tDEBDqFl5tBrPk6akYwxE",
-    "consumer_secret": "3UN9A4umsTlM1hQuHMTv14sNypcKPPQac2Hren6u3JHsVI2rqm",
-    "access_token": "1912801041646866432-ob6UfLFPMuAfg02Ndoy2dEwSDmQIA6",
-    "access_token_secret": "KMvQZwvEexc7ZmhMQBZFaCiNLthBOpjA09MnBUA8PNKlO",
-    "bearer_token": "AAAAAAAAAAAAAAAAAAAAAA600gEAAAAA2%2BjgBdh0B3cneC%2FkMi0TTI1KdCE%3D2luJ2gcW0f1lhUGy4pYm5hw9CeWvt27ls3wyIPddCz9dvL1RLb"
+    "consumer_key": "d2T71uh9qudgd4elpBMRrJFNo",
+    "consumer_secret": "TJmxowWpGvdOS2P67oCX9pxG53rYAcA7muWcaDku2XA1hDgtjv",
+    "access_token": "1912801041646866432-s2jieiurD8vAEdTdksUIqBgabUmncP",
+    "access_token_secret": "aauaJKlEJ0a07jxRY51TVrUTOPhMQpMLbZB5W9JlFe7m3",
+    "bearer_token": "AAAAAAAAAAAAAAAAAAAAAMYo2AEAAAAAmMVb2XxJkQgks985BEtGU8GGIQc%3DdtH8lQp4P0uVJHpglIh4hiekD9H3gSlxxSWj7iNLvbQcyrVZm4"
 }
 
 DATA_DIR = "../js/data"
@@ -19,3 +19,9 @@ DISCORD_ALERT_ENABLED = False
 
 # 디스코드
 DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1375260382540857366/dmWJxQBOfTxWzpKrMuos2pXPKZ2JJ_vONb82tD8d8_xykiSOqlnrrgVnphFod6ocaRbt"  
+
+
+# client ID
+# enF0UUtFZnpMZ1JLanB0UDU5Tkc6MTpjaQ
+# Client Secret
+# lr7cqOatNdsWtu3t0jjoLXqn10VSppqAXYlaCp9sjtiqWIU2MU
