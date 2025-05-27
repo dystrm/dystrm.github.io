@@ -1546,6 +1546,8 @@ body.scroll-lock {
   border-radius: 8px;
   padding: 8px 10px;
   width: 100%;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .contents .sc .right .box.week_vote .vote_box .bottom_info .rank {
   font-family: "Pretendard Variable";
@@ -1841,6 +1843,9 @@ body.scroll-lock {
   }
   .contents .sc .right .box.music_chart .chart_box .melon .chart {
     width: 100%;
+  }
+  .contents .sc .right .box.music_chart .chart_box .other .chart > div .rank {
+    font-size: 1.8rem;
   }
 }
 .contents.sub {

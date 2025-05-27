@@ -695,6 +695,7 @@
                             border-radius: 8px;
                             padding: 8px 10px;
                             width: 100%;
+                            flex-wrap: wrap;
 
                             .rank {
                                 @include ftB;
@@ -974,6 +975,16 @@
 
                                 .chart {
                                     width: 100%;
+                                }
+                            }
+
+                            .other {
+                                .chart {
+                                    >div {
+                                        .rank {
+                                            font-size: rem(18);
+                                        }
+                                    }
                                 }
                             }
                         }
