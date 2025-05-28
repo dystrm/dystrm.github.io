@@ -46,11 +46,17 @@ def load_latest_rank(platform):
     except:
         return None, None
 
-def format_change(curr, prev):
+def format_change(curr, prev, platform=None):
     if curr is None:
         return "❌"
     if prev is None:
         return "🆕"
+
+    # ✅ VIBE는 07시에만 증감 표시, 나머지 시간엔 (-)
+    if platform == "vibe":
+        if datetime.now().hour != 7:
+            return "(-)"
+
     diff = curr - prev
     if diff == 0:
         return "(-)"
@@ -68,7 +74,7 @@ def build_message():
         if curr is None and prev is None:
             lines.append(f"{label} ❌")
         else:
-            change_str = format_change(curr, prev)
+            change_str = format_change(curr, prev, key)
             lines.append(f"{label} {curr if curr else '❌'} {change_str}")
 
     mv_views = get_youtube_view_count()
