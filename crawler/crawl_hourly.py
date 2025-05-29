@@ -17,6 +17,21 @@ def safe_run(name, func):
         print(f"❌ {name} 크롤링 실패: {e}")
         send_discord_alert(f"{name} 크롤링 실패 ❌\n{e}")
 
+def run_hourly():
+    safe_run("멜론 Top", lambda: melon("melon_top"))
+    safe_run("멜론 Hot", lambda: melon("melon_hot"))
+    safe_run("멜론 실시간", melon_realtime)
+    safe_run("지니", get_genie_top200)
+    safe_run("벅스", get_bugs_top100)
+    safe_run("플로", get_flo_top100)
+    safe_run("멜론 어워드", melon_award)
+    #check_and_run_vibe()
+
+if __name__ == "__main__":
+    run_hourly()
+
+
+
 # def check_and_run_vibe():
 #     try:
 #         path = os.path.join("../js/data", "vibe.json")
@@ -36,16 +51,3 @@ def safe_run(name, func):
 #             print("✅ 오늘자 바이브 데이터 이미 존재. 실행 생략")
 #     except Exception as e:
 #         send_discord_alert(f"바이브 확인/크롤링 중 오류 발생 ❌\n{e}")
-
-def run_hourly():
-    safe_run("멜론 Top", lambda: melon("melon_top"))
-    safe_run("멜론 Hot", lambda: melon("melon_hot"))
-    safe_run("멜론 실시간", melon_realtime)
-    safe_run("지니", get_genie_top200)
-    safe_run("벅스", get_bugs_top100)
-    safe_run("플로", get_flo_top100)
-    safe_run("멜론 어워드", melon_award)
-    #check_and_run_vibe()
-
-if __name__ == "__main__":
-    run_hourly()

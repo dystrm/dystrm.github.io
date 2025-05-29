@@ -5,8 +5,9 @@ from utils import push_to_github
 from config import DISCORD_ALERT_ENABLED
 from utils import send_discord_alert
 from config import TITLE
-import json
-import os
+import json, os
+import subprocess
+import shlex
 
 DATA_DIR = "../js/data"
 
@@ -86,23 +87,41 @@ def main():
     print("[DEBUG] 트윗 내용:\n", tweet)
 
     now_hour = datetime.now().hour
-    if 2 <= now_hour < 7:
-        print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 트윗 생략.")
 
-        # ✅ 디스코드 알림도 보냄
+    if 2 <= now_hour < 7:
+        print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 생략.")
         if DISCORD_ALERT_ENABLED:
             send_discord_alert(
-                f"😴 {now_hour}시 차트 트윗은 자동 생략되었습니다.\n(리밋 방지를 위해 새벽 2~6시에는 트윗이 올라가지 않아요)\n\n📢 트윗 예정 내용:\n{tweet}"
+                f"😴 {now_hour}시 차트 트윗은 자동 생략되었습니다.\n(리밋 방지를 위해 새벽 2~6시는 생략됩니다)\n\n📢 트윗 예정 내용:\n{tweet}"
             )
-    else:
+        push_to_github()
+        return
+
+    elif now_hour in [0, 1]:
+        print(f"[🌙] {now_hour}시: Playwright로 트윗 전송 시도")
         try:
-            post_to_x(tweet)
-        except Exception as e:
-            print(f"[X] 트윗 전송 중 오류 발생: {e}")
+            escaped_tweet = shlex.quote(tweet)
+            subprocess.run(["python", "playwright_tweet.py", escaped_tweet], check=True)
             if DISCORD_ALERT_ENABLED:
-                send_discord_alert(f"❌ 트윗 전송 중 예외 발생: {e}\n\n📢 트윗 내용:\n{tweet}")
+                send_discord_alert(f"✅ [Playwright] {now_hour}시 트윗 전송 완료!\n\n📢 트윗 내용:\n{tweet}")
+        except Exception as e:
+            print(f"[X] Playwright 트윗 실패: {e}")
+            if DISCORD_ALERT_ENABLED:
+                send_discord_alert(f"❌ Playwright 트윗 실패: {e}\n\n📢 트윗 내용:\n{tweet}")
+        push_to_github()
+        return
+
+    # ✅ API 방식 트윗 (07~23시)
+    try:
+        post_to_x(tweet)
+    except Exception as e:
+        print(f"[X] API 트윗 전송 중 오류 발생: {e}")
+        if DISCORD_ALERT_ENABLED:
+            send_discord_alert(f"❌ API 트윗 전송 실패: {e}\n\n📢 트윗 내용:\n{tweet}")
 
     push_to_github()
 
 if __name__ == "__main__":
     main()
+# if __name__ == "__main__":
+#     print(build_message())
