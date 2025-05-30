@@ -94,7 +94,7 @@ def main():
         print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 생략.")
         if DISCORD_ALERT_ENABLED:
             send_discord_alert(
-                f"😴 {now_hour}시 차트 트윗은 자동 생략되었습니다.\n(리밋 방지를 위해 새벽 2~6시는 생략됩니다)\n\n📢 트윗 예정 내용:\n{tweet}"
+                f"😴 {now_hour}시 차트 생략, 트윗 전송 시간 07~01시"
             )
         push_to_github()
         return
