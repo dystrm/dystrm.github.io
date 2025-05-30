@@ -100,14 +100,29 @@ def main():
     elif now_hour in [0, 1]:
         print(f"[🌙] {now_hour}시: Playwright로 트윗 전송 시도")
         try:
-            escaped_tweet = shlex.quote(tweet)
-            subprocess.run(["python", "playwright_tweet.py", escaped_tweet], check=True)
-            if DISCORD_ALERT_ENABLED:
-                send_discord_alert(f"✅ [Playwright] {now_hour}시 트윗 전송 완료!\n\n📢 트윗 내용:\n{tweet}")
+            result = subprocess.run(
+                ["python", "playwright_tweet.py", shlex.quote(tweet)],
+                capture_output=True,
+                text=True,
+                check=False  # check=True는 예외 던짐, 대신 결과 수동 검사
+            )
+            stdout = result.stdout.strip()
+            stderr = result.stderr.strip()
+
+            if "✅" in stdout:
+                print("[Playwright] 트윗 전송 성공 로그 감지")
+                if DISCORD_ALERT_ENABLED:
+                    send_discord_alert(f"✅ [Playwright] {now_hour}시 트윗 전송 완료!\n\n📢 트윗 내용:\n{tweet}")
+            else:
+                print("[X] Playwright 트윗 실패 로그 감지")
+                if DISCORD_ALERT_ENABLED:
+                    send_discord_alert(f"❌ [Playwright] 트윗 실패 로그 감지\n\n📢 트윗 내용:\n{tweet}\n\n📄 로그:\n{stdout or stderr}")
+
         except Exception as e:
-            print(f"[X] Playwright 트윗 실패: {e}")
+            print(f"[X] Playwright 트윗 예외 발생: {e}")
             if DISCORD_ALERT_ENABLED:
-                send_discord_alert(f"❌ Playwright 트윗 실패: {e}\n\n📢 트윗 내용:\n{tweet}")
+                send_discord_alert(f"❌ [Playwright] 트윗 예외 발생: {e}\n\n📢 트윗 내용:\n{tweet}")
+
         push_to_github()
         return
 
