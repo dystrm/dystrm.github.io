@@ -1,59 +1,53 @@
+import sys
 from playwright.sync_api import sync_playwright
 import time
-import sys
 
-# ✅ 인자 확인
-print("[DEBUG] argv:", sys.argv)
+def safe_print(text):
+    try:
+        print(text.encode(sys.stdout.encoding, errors="replace").decode(sys.stdout.encoding))
+    except:
+        print("(출력 생략 - 인코딩 문제 발생)")
 
 if len(sys.argv) < 2:
-    print("❌ 트윗 메시지가 전달되지 않았습니다.")
+    safe_print("❌ 트윗 파일 경로가 전달되지 않았습니다.")
     sys.exit(1)
 
-tweet_text = sys.argv[1]
+# 파일에서 트윗 내용 읽기
+file_path = sys.argv[1]
+with open(file_path, "r", encoding="utf-8") as f:
+    tweet_text = f.read()
 
-try:
-    print("[DEBUG] 받은 트윗:", tweet_text.encode(sys.stdout.encoding, 'replace').decode(sys.stdout.encoding))
-except Exception:
-    print("[DEBUG] 받은 트윗: (출력 생략 - 인코딩 문제 발생)")
+safe_print(f"[DEBUG] 트윗 내용 미리보기:\n{tweet_text}")
 
 def tweet_with_playwright(tweet_text: str):
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)  # headless=False: 디버깅 가능
+        browser = p.chromium.launch(headless=False)
         context = browser.new_context(storage_state="twitter_session.json")
         page = context.new_page()
 
         try:
-            # ✅ 트윗 작성 페이지 접속
-            print("[DEBUG] 트윗 페이지 이동 중...")
             page.goto("https://twitter.com/compose/tweet", timeout=60000)
             time.sleep(2)
 
-            # ✅ 트윗 입력
-            print("[DEBUG] 트윗 입력 중...")
             page.keyboard.insert_text(tweet_text)
             time.sleep(1)
 
-            # ✅ 트윗 버튼 클릭
-            print("[DEBUG] 트윗 버튼 클릭 시도...")
             tweet_btn = page.locator('div[data-testid="tweetButtonInline"], button[data-testid="tweetButton"]')
             tweet_btn.click()
             time.sleep(3)
 
-            # ✅ 성공 여부 체크
             textarea = page.locator('div[aria-label="트윗 텍스트"]')
             if textarea.is_visible() and textarea.inner_text().strip() != "":
-                print("❌ 트윗 전송 실패: 입력란이 그대로 남아 있음")
+                safe_print("❌ 트윗 전송 실패: 입력란이 그대로 남아 있음")
             else:
-                print("✅ [Playwright] 트윗 전송 성공")
+                safe_print("✅ 트윗 전송 성공")
 
         except Exception as e:
-            print(f"❌ [Playwright] 트윗 전송 중 오류 발생: {e}")
+            safe_print(f"❌ 트윗 전송 중 오류 발생: {e}")
 
         finally:
-            # ✅ 세션 저장 및 종료
             context.storage_state(path="twitter_session.json")
             context.close()
             browser.close()
 
-# ✅ 실행
 tweet_with_playwright(tweet_text)

@@ -7,12 +7,8 @@ from utils import send_discord_alert
 from config import TITLE
 import json, os
 import subprocess
-import shlex
 
-# ✅ 로그: 현재 실행 시각
-print("[DEBUG] main_post.py 시작됨:", datetime.now())
-
-# 절대 경로 처리
+# 절대경로 설정
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "../js/data")
 
@@ -38,8 +34,7 @@ def load_latest_rank(platform):
             if len(today_data) >= 2:
                 return today_data[-1]["rank"], today_data[0]["rank"]
             elif len(today_data) == 1:
-                rank = today_data[0]["rank"]
-                return rank, rank
+                return today_data[0]["rank"], today_data[0]["rank"]
             else:
                 return None, None
 
@@ -58,7 +53,6 @@ def format_change(curr, prev, platform=None):
         return "❌"
     if prev is None:
         return "🆕"
-
     if platform == "vibe" and datetime.now().hour != 7:
         return "(-)"
 
@@ -88,13 +82,14 @@ def build_message():
 
 def main():
     tweet = build_message()
-    print("[DEBUG] 트윗 내용:\n", tweet)
+    print("[DEBUG] 트윗 내용 (앞부분):", tweet[:50])
 
     now_hour = datetime.now().hour
 
-    #테스트
-    FORCE_PLAYWRIGHT = True if now_hour == 12 else False
+    # 테스트 강제 Playwright용: 12시에 강제로 실행
+    FORCE_PLAYWRIGHT = now_hour == 12
 
+    # 새벽 시간대 (2~6시) 자동 생략
     if 2 <= now_hour < 7 and not FORCE_PLAYWRIGHT:
         print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 생략.")
         if DISCORD_ALERT_ENABLED:
@@ -104,43 +99,44 @@ def main():
         push_to_github()
         return
 
+    # Playwright로 전송 (0시, 1시, or 테스트 시)
     elif now_hour in [0, 1] or FORCE_PLAYWRIGHT:
         print(f"[🌙] {now_hour}시: Playwright로 트윗 전송 시도")
         try:
-            command = f'python playwright_tweet.py {shlex.quote(tweet)}'
-            print("[DEBUG] subprocess 실행 명령어:", command)
+            # 트윗 텍스트 파일 저장
+            with open("tweet.txt", "w", encoding="utf-8") as f:
+                f.write(tweet)
 
             result = subprocess.run(
-                command,
-                shell=True,
+                ["python", "playwright_tweet.py", "tweet.txt"],
                 capture_output=True,
-                text=True,
-                check=False
+                text=True
             )
+
             stdout = result.stdout.strip()
             stderr = result.stderr.strip()
 
             print("[DEBUG] STDOUT:", stdout)
             print("[DEBUG] STDERR:", stderr)
 
-            if "✅" in stdout:
+            if "트윗 전송 성공" in stdout:
                 print("[Playwright] 트윗 전송 성공 로그 감지")
                 if DISCORD_ALERT_ENABLED:
-                    send_discord_alert(f"✅ [Playwright] {now_hour}시 트윗 전송 완료!\n\n📢 트윗 내용:\n{tweet}")
+                    send_discord_alert(f"[Playwright] {now_hour}시 트윗 전송 완료!\n\n📢 트윗 내용:\n{tweet}")
             else:
                 print("[X] Playwright 트윗 실패 로그 감지")
                 if DISCORD_ALERT_ENABLED:
-                    send_discord_alert(f"❌ [Playwright] 트윗 실패 로그 감지\n\n📢 트윗 내용:\n{tweet}\n\n📄 로그:\n{stdout or stderr}")
+                    send_discord_alert(f"[Playwright] 트윗 실패 로그 감지\n\n📢 트윗 내용:\n{tweet}\n\n📄 로그:\n{stdout or stderr}")
 
         except Exception as e:
             print(f"[X] Playwright 트윗 예외 발생: {e}")
             if DISCORD_ALERT_ENABLED:
-                send_discord_alert(f"❌ [Playwright] 트윗 예외 발생: {e}\n\n📢 트윗 내용:\n{tweet}")
+                send_discord_alert(f"[Playwright] 트윗 예외 발생: {e}\n\n📢 트윗 내용:\n{tweet}")
 
         push_to_github()
         return
 
-    # ✅ API 방식 트윗 (07~23시)
+    # API 방식 전송 (07~23시, 12시 제외)
     try:
         post_to_x(tweet)
     except Exception as e:
