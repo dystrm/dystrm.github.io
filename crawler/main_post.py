@@ -93,7 +93,7 @@ def main():
     now_hour = datetime.now().hour
 
     #테스트
-    FORCE_PLAYWRIGHT = True if now_hour == 11 else False
+    FORCE_PLAYWRIGHT = True if now_hour == 12 else False
 
     if 2 <= now_hour < 7 and not FORCE_PLAYWRIGHT:
         print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 생략.")

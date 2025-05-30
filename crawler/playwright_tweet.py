@@ -10,7 +10,11 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 tweet_text = sys.argv[1]
-print("[DEBUG] 받은 트윗 내용 일부:", tweet_text[:50])  # 로그용
+
+try:
+    print("[DEBUG] 받은 트윗:", tweet_text.encode(sys.stdout.encoding, 'replace').decode(sys.stdout.encoding))
+except Exception:
+    print("[DEBUG] 받은 트윗: (출력 생략 - 인코딩 문제 발생)")
 
 def tweet_with_playwright(tweet_text: str):
     with sync_playwright() as p:
