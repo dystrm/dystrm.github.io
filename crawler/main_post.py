@@ -9,7 +9,12 @@ import json, os
 import subprocess
 import shlex
 
-DATA_DIR = "../js/data"
+# ✅ 로그: 현재 실행 시각
+print("[DEBUG] main_post.py 시작됨:", datetime.now())
+
+# 절대 경로 처리
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "../js/data")
 
 PLATFORMS = {
     "melon_top": "멜론 Top 100",
@@ -44,7 +49,8 @@ def load_latest_rank(platform):
             return data[-1]["rank"], None
         else:
             return None, None
-    except:
+    except Exception as e:
+        print(f"[ERROR] load_latest_rank({platform}): {e}")
         return None, None
 
 def format_change(curr, prev, platform=None):
@@ -53,10 +59,8 @@ def format_change(curr, prev, platform=None):
     if prev is None:
         return "🆕"
 
-    # ✅ VIBE는 07시에만 증감 표시, 나머지 시간엔 (-)
-    if platform == "vibe":
-        if datetime.now().hour != 7:
-            return "(-)"
+    if platform == "vibe" and datetime.now().hour != 7:
+        return "(-)"
 
     diff = curr - prev
     if diff == 0:
@@ -68,7 +72,7 @@ def format_change(curr, prev, platform=None):
 
 def build_message():
     now = datetime.now().strftime("%Y-%m-%d %H시 차트")
-    lines = [f"💙 \"{TITLE}\" {now}",""]
+    lines = [f"💙 \"{TITLE}\" {now}", ""]
 
     for key, label in PLATFORMS.items():
         curr, prev = load_latest_rank(key)
@@ -88,7 +92,10 @@ def main():
 
     now_hour = datetime.now().hour
 
-    if 2 <= now_hour < 7:
+    #테스트
+    FORCE_PLAYWRIGHT = True if now_hour == 11 else False
+
+    if 2 <= now_hour < 7 and not FORCE_PLAYWRIGHT:
         print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 생략.")
         if DISCORD_ALERT_ENABLED:
             send_discord_alert(
@@ -97,17 +104,24 @@ def main():
         push_to_github()
         return
 
-    elif now_hour in [0, 1]:
+    elif now_hour in [0, 1] or FORCE_PLAYWRIGHT:
         print(f"[🌙] {now_hour}시: Playwright로 트윗 전송 시도")
         try:
+            command = f'python playwright_tweet.py {shlex.quote(tweet)}'
+            print("[DEBUG] subprocess 실행 명령어:", command)
+
             result = subprocess.run(
-                ["python", "playwright_tweet.py", shlex.quote(tweet)],
+                command,
+                shell=True,
                 capture_output=True,
                 text=True,
-                check=False  # check=True는 예외 던짐, 대신 결과 수동 검사
+                check=False
             )
             stdout = result.stdout.strip()
             stderr = result.stderr.strip()
+
+            print("[DEBUG] STDOUT:", stdout)
+            print("[DEBUG] STDERR:", stderr)
 
             if "✅" in stdout:
                 print("[Playwright] 트윗 전송 성공 로그 감지")
@@ -138,5 +152,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# if __name__ == "__main__":
-#     print(build_message())

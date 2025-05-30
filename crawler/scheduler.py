@@ -12,11 +12,12 @@ def job_vibe_daily():
     subprocess.run(["python", "crawl_all.py"])
     subprocess.run(["python", "main_post.py"])
 
-# 매시간 HH:03
+# ✅ 07시는 제외
 for hour in range(24):
-    schedule.every().day.at(f"{hour:02d}:03").do(job_hourly)
+    if hour != 7:
+        schedule.every().day.at(f"{hour:02d}:03").do(job_hourly)
 
-# 하루 한 번 07:03 VIBE 포함
+# ✅ 07:03은 VIBE 포함 전용
 schedule.every().day.at("07:03").do(job_vibe_daily)
 
 if __name__ == "__main__":
