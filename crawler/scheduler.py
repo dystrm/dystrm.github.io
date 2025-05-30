@@ -31,7 +31,7 @@ def job_test_playwright():
 # 정규 스케줄 설정
 for hour in range(24):
     if hour != 7:
-        schedule.every().day.at(f"{hour:02d}:37").do(job_hourly)
+        schedule.every().day.at(f"{hour:02d}:03").do(job_hourly)
 
 schedule.every().day.at("07:03").do(job_vibe_daily)
 

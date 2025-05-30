@@ -87,10 +87,10 @@ def main():
     now_hour = datetime.now().hour
 
     # 테스트 강제 Playwright용: 12시에 강제로 실행
-    FORCE_PLAYWRIGHT = now_hour == 12
+    #FORCE_PLAYWRIGHT = now_hour == 12
 
     # 새벽 시간대 (2~6시) 자동 생략
-    if 2 <= now_hour < 7 and not FORCE_PLAYWRIGHT:
+    if 2 <= now_hour < 7:
         print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 생략.")
         if DISCORD_ALERT_ENABLED:
             send_discord_alert(
@@ -100,7 +100,7 @@ def main():
         return
 
     # Playwright로 전송 (0시, 1시, or 테스트 시)
-    elif now_hour in [0, 1] or FORCE_PLAYWRIGHT:
+    elif now_hour in [0, 1]:
         print(f"[🌙] {now_hour}시: Playwright로 트윗 전송 시도")
         try:
             # 트윗 텍스트 파일 저장
