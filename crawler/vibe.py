@@ -22,17 +22,14 @@ def get_vibe_top100():
                 log("[VIBE] 구독 팝업 없음 또는 닫기 실패 ❌")
 
             # 방해 요소 제거
-            page.evaluate("""
-                document.querySelector(".floating_bar")?.remove();
-            """)
+            page.evaluate("""document.querySelector(".floating_bar")?.remove();""")
             page.wait_for_timeout(500)
 
-            # 조건 충족을 위한 스크롤
+            # 스크롤 & 더보기 클릭
             for _ in range(5):
                 page.mouse.wheel(0, 2000)
                 page.wait_for_timeout(400)
 
-            # 더보기 클릭
             page.evaluate("""
                 const btn = document.querySelector(".btn_more_list a.link");
                 if (btn) {
@@ -45,13 +42,14 @@ def get_vibe_top100():
             # 300곡 로딩 대기
             try:
                 page.wait_for_function(
-                    """() => document.querySelectorAll("div.tracklist table tbody tr").length >= 300""",
+                    "() => document.querySelectorAll('div.tracklist table tbody tr').length >= 300",
                     timeout=10000
                 )
                 log("[VIBE] 300곡 로딩 완료 ✅")
             except:
                 log("[VIBE] 300곡 로딩 실패 ⚠️")
 
+            # 페이지 파싱
             soup = BeautifulSoup(page.content(), "html.parser")
             browser.close()
 
@@ -64,7 +62,7 @@ def get_vibe_top100():
 
                     if TITLE.lower() in title and ARTIST.lower() in artist:
                         log(f"[VIBE] '{TITLE}' 현재 순위: {rank}")
-                        save_chart("vibe", int(rank))
+                        save_chart("vibe", int(rank))  # 현재 시각 기준 저장
                         return
                 except:
                     continue

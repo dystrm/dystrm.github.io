@@ -28,16 +28,33 @@ def load_latest_rank(platform):
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)["history"]
 
-        if platform == "vibe":
-            today = datetime.now().date().isoformat()
-            today_data = [d for d in data if d["timestamp"].startswith(today)]
-            if len(today_data) >= 2:
-                return today_data[-1]["rank"], today_data[0]["rank"]
-            elif len(today_data) == 1:
-                return today_data[0]["rank"], today_data[0]["rank"]
-            else:
-                return None, None
+        now = datetime.now()
+        today = now.date()
+        today_7 = datetime.combine(today, datetime.min.time()).replace(hour=7)
+        yesterday_7 = today_7 - timedelta(days=1)
 
+        if platform == "vibe":
+            def find_at(dt):
+                timestamp = dt.strftime("%Y-%m-%d %H:%M")
+                return next((d["rank"] for d in data if d["timestamp"] == timestamp), None)
+
+            if now.hour < 7:
+                # 0시~6시: 어제 7시 데이터만 유지
+                prev = find_at(yesterday_7)
+                return prev, None
+
+            elif now.hour == 7:
+                # 7시: 오늘 7시와 어제 7시 비교
+                curr = find_at(today_7)
+                prev = find_at(yesterday_7)
+                return curr, prev
+
+            else:
+                # 8시 이후: 오늘 7시 데이터, 증감은 무시
+                curr = find_at(today_7)
+                return curr, None
+
+        # 그 외 플랫폼은 기존 방식 유지
         if len(data) >= 2:
             return data[-1]["rank"], data[-2]["rank"]
         elif len(data) == 1:

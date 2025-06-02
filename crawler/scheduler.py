@@ -1,14 +1,10 @@
 import schedule
 import time
 import subprocess
-from datetime import datetime, timedelta
+from datetime import datetime
 import sys
 
-# 실행 허용 시간 범위 설정
-start_time = datetime.now().replace(hour=22, minute=0, second=0, microsecond=0)
-end_time = (start_time + timedelta(days=1)).replace(hour=14)
-
-print(f"⏳ 스케줄러 시작됨\n허용 시간: {start_time} ~ {end_time}")
+print(f"⏳ 스케줄러 시작됨")
 
 def job_hourly():
     print("[⏰] 정각+3분: 크롤링 & 트윗")
@@ -43,23 +39,7 @@ for hour in range(24):
 
 schedule.every().day.at("07:03").do(job_vibe_daily)
 
-# 루프 제어
+# 루프 실행
 while True:
-    now = datetime.now()
-
-    # ✅ 종료 조건
-    if now > end_time:
-        print(f"[✅] 종료 시간 {end_time} 도달. 스케줄러를 종료합니다.")
-        sys.exit(0)
-
-    if start_time <= now <= end_time:
-        schedule.run_pending()
-
+    schedule.run_pending()
     time.sleep(1)
-
-
-# if __name__ == "__main__":
-#     print("⏳ 스케줄러 시작됨")
-#     while True:
-#         schedule.run_pending()
-#         time.sleep(1)
