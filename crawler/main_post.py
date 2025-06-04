@@ -1,4 +1,3 @@
-from datetime import datetime
 from x_poster import post_to_x
 from youtube import get_youtube_view_count
 from utils import push_to_github
@@ -7,6 +6,7 @@ from utils import send_discord_alert
 from config import TITLE
 import json, os
 import subprocess
+from datetime import datetime, timedelta
 
 # 절대경로 설정
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
