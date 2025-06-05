@@ -11,6 +11,7 @@ async function renderMelonAwardBox() {
   const artist = json.artist;
   const week = latest.week;
   const remain = latest.remain;
+  const timestamp = latest.timestamp;
 
   const box = document.querySelector(".week_vote .vote_box");
   const none = document.querySelector(".week_vote .vote_none");
@@ -34,22 +35,22 @@ async function renderMelonAwardBox() {
     const descEl = box.querySelector(".desc");
 
     if (weekEl) weekEl.textContent = week ?? "";
-    if (remainEl) remainEl.textContent = remain ?? "";
     if (rankEl) rankEl.textContent = rank;
     if (singerEl) singerEl.textContent = artist;
     if (titleEl) titleEl.textContent = title;
     if (percentEl) percentEl.textContent = percent;
     if (voteEl) voteEl.textContent = vote;
     if (descEl) descEl.textContent = desc;
+    if (remainEl) remainEl.textContent = remain ?? "알 수 없음";
   }
 
-  // 기준 시간 갱신 (정각 표시)
-    const timeEl = document.querySelector(".week_vote .box_tit .time");
-    if (timeEl && latest.timestamp) {
-    const ts = new Date(latest.timestamp);
-    const month = String(ts.getMonth() + 1).padStart(2, '0'); // 월 (0~11 → +1)
-    const date = String(ts.getDate()).padStart(2, '0');        // 일
-    const hour = String(ts.getHours()).padStart(2, '0');       // 시
+  // ✅ 기준 시간 표시
+  const timeEl = document.querySelector(".week_vote .box_tit .time");
+  if (timeEl && timestamp) {
+    const ts = new Date(timestamp);
+    const month = String(ts.getMonth() + 1).padStart(2, '0');
+    const date = String(ts.getDate()).padStart(2, '0');
+    const hour = String(ts.getHours()).padStart(2, '0');
     timeEl.textContent = `${month}/${date} ${hour}:00 기준`;
   }
 }

@@ -54,7 +54,7 @@ def melon_award():
     soup = BeautifulSoup(driver.page_source, "html.parser")
     driver.quit()
 
-    # ✅ 주차 처리: 숫자만 추출
+    # ✅ 주차 처리
     try:
         month_tag = soup.select_one(".sec-title .num-term01")
         week_tag = soup.select_one(".sec-title .num-term02")
@@ -64,14 +64,30 @@ def melon_award():
     except:
         week_label = None
 
-    # ✅ 남은 일수 처리: 첫 .num-wrap 의 숫자만 추출
+    # ✅ 남은 시간 처리: N일 N시간 형식으로
     try:
-        day_wrap = soup.select("dl.col-closing-time dd .num-wrap")
-        if day_wrap:
-            digits = [s.text.strip() for s in day_wrap[0].select("span")]
-            remain_label = f"{int(''.join(digits))}일"
+        remain_block = soup.select_one("dl.col-closing-time dd")
+        remain_label = ""
+
+        if remain_block:
+            text = remain_block.get_text(separator=" ", strip=True)
+            day_match = re.search(r"(\d+)일", text)
+            hour_match = re.search(r"(\d+)시간", text)
+
+            day = day_match.group(1) if day_match else None
+            hour = hour_match.group(1) if hour_match else None
+
+            if day and hour:
+                remain_label = f"{day}일 {hour}시간"
+            elif day:
+                remain_label = f"{day}일"
+            elif hour:
+                remain_label = f"{hour}시간"
+            else:
+                remain_label = None
         else:
             remain_label = None
+
     except:
         remain_label = None
 
