@@ -1,5 +1,5 @@
-TITLE = "Fly Up"
-ARTIST = "RIIZE"
+TITLE = "반딧불 (Little Light)"
+ARTIST = "도영 (DOYOUNG)"
 
 # === youtube 조회수 url ===
 VIDEO_ID = "Hf2wjEU2rzo"
