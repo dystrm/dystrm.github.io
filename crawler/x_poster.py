@@ -13,7 +13,7 @@ def post_to_x(text):
         response = client.create_tweet(text=text)
         tweet_url = f"https://x.com/i/web/status/{response.data['id']}"
         log(f"[X] 트윗 전송 완료 ✅\n{tweet_url}")
-        send_discord_alert(f"✅ 트윗 전송 완료!\n{tweet_url}")
+        #send_discord_alert(f"✅ 트윗 전송 완료!\n{tweet_url}")
 
     except tweepy.errors.TooManyRequests as e:
         reset_time = e.response.headers.get("x-rate-limit-reset")

@@ -35,9 +35,11 @@ def load_latest_rank(platform):
 
         if platform == "vibe":
             def find_at(dt):
-                timestamp = dt.strftime("%Y-%m-%d %H:%M")
-                return next((d["rank"] for d in data if d["timestamp"] == timestamp), None)
-
+                return next(
+                    (d["rank"] for d in data
+                    if datetime.fromisoformat(d["timestamp"]).strftime("%Y-%m-%d %H") == dt.strftime("%Y-%m-%d %H")),
+                    None
+                )
             if now.hour < 7:
                 prev = find_at(yesterday_7)
                 return prev, None
@@ -93,7 +95,7 @@ def build_message():
 
 def main():
     tweet = build_message()
-    print("[DEBUG] 트윗 내용 (앞부분):", tweet[:50])
+    print("[DEBUG] 트윗 내용 (앞부분):", tweet)
 
     now_hour = datetime.now().hour
 
