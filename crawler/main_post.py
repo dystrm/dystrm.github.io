@@ -64,10 +64,12 @@ def load_latest_rank(platform):
 def format_change(curr, prev, platform=None):
     if curr is None:
         return "❌"
-    if prev is None:
-        return "🆕"
+    
     if platform == "vibe" and datetime.now().hour != 7:
         return "(-)"
+    
+    if prev is None:
+        return "🆕"
 
     diff = curr - prev
     if diff == 0:
