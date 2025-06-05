@@ -39,22 +39,16 @@ def load_latest_rank(platform):
                 return next((d["rank"] for d in data if d["timestamp"] == timestamp), None)
 
             if now.hour < 7:
-                # 0시~6시: 어제 7시 데이터만 유지
                 prev = find_at(yesterday_7)
                 return prev, None
-
             elif now.hour == 7:
-                # 7시: 오늘 7시와 어제 7시 비교
                 curr = find_at(today_7)
                 prev = find_at(yesterday_7)
                 return curr, prev
-
             else:
-                # 8시 이후: 오늘 7시 데이터, 증감은 무시
                 curr = find_at(today_7)
                 return curr, None
 
-        # 그 외 플랫폼은 기존 방식 유지
         if len(data) >= 2:
             return data[-1]["rank"], data[-2]["rank"]
         elif len(data) == 1:
@@ -87,11 +81,11 @@ def build_message():
 
     for key, label in PLATFORMS.items():
         curr, prev = load_latest_rank(key)
-        if curr is None and prev is None:
+        if curr is None:
             lines.append(f"{label} ❌")
         else:
             change_str = format_change(curr, prev, key)
-            lines.append(f"{label} {curr if curr else '❌'} {change_str}")
+            lines.append(f"{label} {curr} {change_str}")
 
     mv_views = get_youtube_view_count()
     lines.append(f"\n🎬 {mv_views:,}")
@@ -103,10 +97,6 @@ def main():
 
     now_hour = datetime.now().hour
 
-    # 테스트 강제 Playwright용: 12시에 강제로 실행
-    #FORCE_PLAYWRIGHT = now_hour == 12
-
-    # 새벽 시간대 (2~6시) 자동 생략
     if 2 <= now_hour < 7:
         print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 생략.")
         if DISCORD_ALERT_ENABLED:
@@ -116,11 +106,9 @@ def main():
         push_to_github()
         return
 
-    # Playwright로 전송 (0시, 1시, or 테스트 시)
     elif now_hour in [0, 1]:
         print(f"[🌙] {now_hour}시: Playwright로 트윗 전송 시도")
         try:
-            # 트윗 텍스트 파일 저장
             with open("tweet.txt", "w", encoding="utf-8") as f:
                 f.write(tweet)
 
@@ -138,8 +126,8 @@ def main():
 
             if "트윗 전송 성공" in stdout:
                 print("[Playwright] 트윗 전송 성공 로그 감지")
-                if DISCORD_ALERT_ENABLED:
-                    send_discord_alert(f"[Playwright] {now_hour}시 트윗 전송 완료!\n\n📢 트윗 내용:\n{tweet}")
+                #if DISCORD_ALERT_ENABLED:
+                    #send_discord_alert(f"[Playwright] {now_hour}시 트윗 전송 완료!\n\n📢 트윗 내용:\n{tweet}")
             else:
                 print("[X] Playwright 트윗 실패 로그 감지")
                 if DISCORD_ALERT_ENABLED:
@@ -153,7 +141,6 @@ def main():
         push_to_github()
         return
 
-    # API 방식 전송 (07~23시, 12시 제외)
     try:
         post_to_x(tweet)
     except Exception as e:
