@@ -25,17 +25,17 @@ async function drawMiniChart(file, elementId, rankSelector = null, updateTime = 
     const chartEl = document.querySelector(elementId);
     if (!chartEl) return;
 
-    const chartWrapper = chartEl.closest(".chart");
-    const chartNoneEl = chartWrapper?.querySelector(".chart_none");
-
-    // ✅ song 타이틀 표시
-    const title = json.title;
-    if (title && chartWrapper) {
-        const songTitleEl = chartWrapper.querySelector(".song");
+    // ✅ title → .box.music_chart > .song에 삽입
+    const musicBox = chartEl.closest(".box.music_chart");
+    if (json.title && musicBox) {
+        const songTitleEl = musicBox.querySelector(".song");
         if (songTitleEl) {
-            songTitleEl.textContent = title;
+            songTitleEl.textContent = json.title;
         }
     }
+
+    const chartWrapper = chartEl.closest(".chart");
+    const chartNoneEl = chartWrapper?.querySelector(".chart_none");
 
     if (!history.length) {
         chartEl.classList.add("hide");
