@@ -28,6 +28,15 @@ async function drawMiniChart(file, elementId, rankSelector = null, updateTime = 
     const chartWrapper = chartEl.closest(".chart");
     const chartNoneEl = chartWrapper?.querySelector(".chart_none");
 
+    // ✅ song 타이틀 표시
+    const title = json.title;
+    if (title && chartWrapper) {
+        const songTitleEl = chartWrapper.querySelector(".song");
+        if (songTitleEl) {
+            songTitleEl.textContent = title;
+        }
+    }
+
     if (!history.length) {
         chartEl.classList.add("hide");
         if (chartNoneEl) chartNoneEl.classList.remove("hide");
