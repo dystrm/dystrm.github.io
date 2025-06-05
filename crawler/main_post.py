@@ -81,7 +81,7 @@ def format_change(curr, prev, platform=None):
 
 def build_message():
     now = datetime.now().strftime("%Y-%m-%d %H시 차트")
-    lines = [f"💙 \"{TITLE}\" {now}", ""]
+    lines = [f"💫 \"{TITLE}\" {now}", ""]
 
     for key, label in PLATFORMS.items():
         curr, prev = load_latest_rank(key)

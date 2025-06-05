@@ -22,6 +22,14 @@ async function drawMiniChart(file, elementId, rankSelector = null, updateTime = 
     const json = await res.json();
     const history = json.history.slice(-24);
 
+    // ✅ title만 DOM에 반영
+    if (json.title) {
+        const songEl = chartWrapper?.querySelector(".song");
+        if (songEl) {
+            songEl.textContent = json.title;
+        }
+    }
+
     const chartEl = document.querySelector(elementId);
     if (!chartEl) return;
 
