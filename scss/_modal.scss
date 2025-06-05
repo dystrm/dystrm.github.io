@@ -193,6 +193,14 @@
         .modal_body {
             padding: 20px 0;
             width: 100%;
+
+                .ready {
+                    @include ftM;
+                    color: $ft-main-color;
+                    text-align: center;
+                    margin: 0 auto;
+                    font-size: rem(14);
+                }
         }
     }
 }

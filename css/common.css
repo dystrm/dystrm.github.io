@@ -2530,6 +2530,14 @@ body.scroll-lock {
   padding: 20px 0;
   width: 100%;
 }
+.modal .modal_contents .modal_body .ready {
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  color: #222222;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1.4rem;
+}
 
 @media only screen and (max-width: 480px) {
   .modal .modal_contents.type_img {
