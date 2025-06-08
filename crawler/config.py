@@ -6,7 +6,7 @@ TITLE = "반딧불 (Little Light)"
 ARTIST = "도영 (DOYOUNG)"
 VIDEO_ID = "Hf2wjEU2rzo"
 DATA_DIR = "../js/data"
-DISCORD_ALERT_ENABLED = True
+DISCORD_ALERT_ENABLED = False
 
 # 비밀 키 경로 설정
 SECRETS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../secrets"))
