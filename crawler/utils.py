@@ -48,7 +48,7 @@ def send_discord_alert(message):
         return
     
     try:
-        res = requests.post(DISCORD_WEBHOOK_URL, json={"content": f"🚨 {message}"})
+        res = requests.post(DISCORD_WEBHOOK_URL, json={"content": f"{message}"})
         res.raise_for_status()
         print("📢 디스코드 알림 전송 완료")
     except Exception as e:
