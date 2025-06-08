@@ -29,13 +29,22 @@ def tweet_with_playwright(tweet_text: str):
             page.goto("https://twitter.com/compose/tweet", timeout=60000)
             time.sleep(2)
 
+            # 트윗 입력
             page.keyboard.insert_text(tweet_text)
             time.sleep(1)
 
+            # ✅ 겹치는 요소 제거 시도
+            page.evaluate("""() => {
+                const blockers = document.querySelectorAll('div[role="presentation"]');
+                blockers.forEach(el => el.remove());
+            }""")
+
+            # ✅ 트윗 버튼 강제 클릭
             tweet_btn = page.locator('div[data-testid="tweetButtonInline"], button[data-testid="tweetButton"]')
-            tweet_btn.click()
+            tweet_btn.click(force=True)
             time.sleep(3)
 
+            # 트윗 성공 여부 확인
             textarea = page.locator('div[aria-label="트윗 텍스트"]')
             if textarea.is_visible() and textarea.inner_text().strip() != "":
                 safe_print("❌ 트윗 전송 실패: 입력란이 그대로 남아 있음")
