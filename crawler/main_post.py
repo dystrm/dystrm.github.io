@@ -81,7 +81,7 @@ def format_change(curr, prev, platform=None):
 
 def build_message():
     now = datetime.now().strftime("%Y-%m-%d %H시 차트")
-    lines = [f"💫 \"{TITLE}\" {now}", ""]
+    lines = [f"✨ \"{TITLE}\" {now}", ""]
 
     for key, label in PLATFORMS.items():
         curr, prev = load_latest_rank(key)
@@ -91,16 +91,19 @@ def build_message():
             change_str = format_change(curr, prev, key)
             lines.append(f"{label} {curr} {change_str}")
 
-    mv_views = get_youtube_view_count()
-    lines.append(f"\n🎬 {mv_views:,}")
+    #mv_views = get_youtube_view_count()
+    #lines.append(f"\n🎬 {mv_views:,}")
 
     # ✅ 해시태그 추가
-    hashtags = [
-        "#도영", "#DOYOUNG", "#안녕우주",
-        "#DOYOUNG_안녕우주", "#DOYOUNG_Soar"
-    ]
-    lines.append("")  # 한 줄 엔터
-    lines.extend(hashtags)
+    # hashtags = [
+    #     "#도영", "#DOYOUNG", "#안녕우주",
+    #     "#DOYOUNG_안녕우주", "#DOYOUNG_Soar"
+    # ]
+    # lines.append("")  # 한 줄 띄우기
+
+    # # 3개씩 묶어서 한 줄에 출력
+    # for i in range(0, len(hashtags), 3):
+    #     lines.append(" ".join(hashtags[i:i+3]))
     
     return "\n".join(lines)
 
@@ -139,6 +142,8 @@ def main():
 
             if "트윗 전송 성공" in stdout:
                 print("[Playwright] 트윗 전송 성공 로그 감지")
+                if DISCORD_ALERT_ENABLED:
+                    send_discord_alert(tweet)
                 #if DISCORD_ALERT_ENABLED:
                     #send_discord_alert(f"[Playwright] {now_hour}시 트윗 전송 완료!\n\n📢 트윗 내용:\n{tweet}")
             else:
@@ -156,6 +161,9 @@ def main():
 
     try:
         post_to_x(tweet)
+        if DISCORD_ALERT_ENABLED:
+            send_discord_alert(tweet)  # ✅ 트윗 내용만 디스코드로 전송
+
     except Exception as e:
         print(f"[X] API 트윗 전송 중 오류 발생: {e}")
         if DISCORD_ALERT_ENABLED:
@@ -164,4 +172,8 @@ def main():
     push_to_github()
 
 if __name__ == "__main__":
-    main()
+     main()
+    
+# ✅ 트윗 내용 미리 보기
+# if __name__ == "__main__":
+#     print(build_message())

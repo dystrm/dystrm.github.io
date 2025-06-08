@@ -7,12 +7,12 @@ import sys
 print(f"⏳ 스케줄러 시작됨")
 
 def job_hourly():
-    print("[⏰] 정각+3분: 크롤링 & 트윗")
+    print("[⏰] 정각+2분: 크롤링 & 트윗")
     subprocess.run(["python", "crawl_hourly.py"])
     subprocess.run(["python", "main_post.py"])
 
 def job_vibe_daily():
-    print("[⏰] 07:03 VIBE 포함 전체 크롤링 & 트윗")
+    print("[⏰] 07:02 VIBE 포함 전체 크롤링 & 트윗")
     subprocess.run(["python", "crawl_all.py"])
     subprocess.run(["python", "main_post.py"])
 
@@ -35,9 +35,9 @@ def job_test_playwright():
 # 정규 스케줄 설정
 for hour in range(24):
     if hour != 7:
-        schedule.every().day.at(f"{hour:02d}:03").do(job_hourly)
+        schedule.every().day.at(f"{hour:02d}:02").do(job_hourly)
 
-schedule.every().day.at("07:03").do(job_vibe_daily)
+schedule.every().day.at("07:02").do(job_vibe_daily)
 
 # 루프 실행
 while True:
