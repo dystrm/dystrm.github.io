@@ -21,3 +21,5 @@ TWITTER_API = load_json("twitter_secrets.json")
 
 # Discord Webhook URL
 DISCORD_WEBHOOK_URL = load_json("discord_secrets.json")["webhook_url"]
+
+#test
