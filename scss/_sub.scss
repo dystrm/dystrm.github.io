@@ -237,6 +237,23 @@
                             max-width: 780px;
                             margin: 0 auto;
                         }
+                        .go_btn {
+                            position: relative;
+                            @include flex(center, center);
+                            padding: 4px 10px;
+                            background: $main-btn-bg-color;
+                            height: 48px;
+                            border-radius: 4px;
+                            @include ftM;
+                            font-size: rem(14);
+                            color: $ft-main-color;
+                            transition: 0.3s all ease-in-out;
+                            width: 120px;
+                            margin: 0 auto 20px;
+                            &:hover {
+                                background: $main-btn-hv-color;
+                            }
+                        }
 
                         .radio_box {
                             @include flex(center, center, 12px);

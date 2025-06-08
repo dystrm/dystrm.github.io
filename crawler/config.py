@@ -1,27 +1,21 @@
+import json
+import os
+
+# 기본 정보
 TITLE = "반딧불 (Little Light)"
 ARTIST = "도영 (DOYOUNG)"
-
-# === youtube 조회수 url ===
 VIDEO_ID = "Hf2wjEU2rzo"
-
-# === X.com(Twitter) API 키 ===
-TWITTER_API = {
-    "consumer_key": "d2T71uh9qudgd4elpBMRrJFNo",
-    "consumer_secret": "TJmxowWpGvdOS2P67oCX9pxG53rYAcA7muWcaDku2XA1hDgtjv",
-    "access_token": "1912801041646866432-s2jieiurD8vAEdTdksUIqBgabUmncP",
-    "access_token_secret": "aauaJKlEJ0a07jxRY51TVrUTOPhMQpMLbZB5W9JlFe7m3",
-    "bearer_token": "AAAAAAAAAAAAAAAAAAAAAMYo2AEAAAAAmMVb2XxJkQgks985BEtGU8GGIQc%3DdtH8lQp4P0uVJHpglIh4hiekD9H3gSlxxSWj7iNLvbQcyrVZm4"
-}
-
 DATA_DIR = "../js/data"
-
 DISCORD_ALERT_ENABLED = True
 
-# 디스코드
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1375260382540857366/dmWJxQBOfTxWzpKrMuos2pXPKZ2JJ_vONb82tD8d8_xykiSOqlnrrgVnphFod6ocaRbt"  
+# 비밀 키 불러오기
+SECRET_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../secrets/secrets.json"))
 
+def load_secrets():
+    with open(SECRET_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-# client ID
-# enF0UUtFZnpMZ1JLanB0UDU5Tkc6MTpjaQ
-# Client Secret
-# lr7cqOatNdsWtu3t0jjoLXqn10VSppqAXYlaCp9sjtiqWIU2MU
+secrets = load_secrets()
+
+TWITTER_API = secrets["twitter"]
+DISCORD_WEBHOOK_URL = secrets["discord"]["webhook_url"]

@@ -93,6 +93,15 @@ def build_message():
 
     mv_views = get_youtube_view_count()
     lines.append(f"\n🎬 {mv_views:,}")
+
+    # ✅ 해시태그 추가
+    hashtags = [
+        "#도영", "#DOYOUNG", "#안녕우주",
+        "#DOYOUNG_안녕우주", "#DOYOUNG_Soar"
+    ]
+    lines.append("")  # 한 줄 엔터
+    lines.extend(hashtags)
+    
     return "\n".join(lines)
 
 def main():
