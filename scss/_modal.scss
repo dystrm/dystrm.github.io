@@ -61,10 +61,14 @@
                             }
                         }
 
-                        &.melon,
-                        &.vibe {
+                        &.melon {
                             a {
                                 width: calc(100% / 3 - 12px);
+                            }
+                        }
+                        &.vibe {
+                            a {
+                                width: calc(100% / 3 - 6px);
                             }
                         }
                     }

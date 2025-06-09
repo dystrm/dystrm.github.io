@@ -2385,8 +2385,11 @@ body.scroll-lock {
   width: 20px;
   height: 20px;
 }
-.modal .modal_contents.type_click .btn_box.mo div.melon a, .modal .modal_contents.type_click .btn_box.mo div.vibe a {
+.modal .modal_contents.type_click .btn_box.mo div.melon a {
   width: calc(33.3333333333% - 12px);
+}
+.modal .modal_contents.type_click .btn_box.mo div.vibe a {
+  width: calc(33.3333333333% - 6px);
 }
 .modal .modal_contents.type_click .btn_box div {
   display: -webkit-box;
