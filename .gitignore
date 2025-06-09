@@ -3,4 +3,5 @@ secrets/
 venv/
 # Python 캐시 제거
 __pycache__/
+*.pyc
 crawler/__pycache__/
