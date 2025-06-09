@@ -64,13 +64,17 @@ $(document).on("click", ".modal_close_btn", function () {
     $("body").removeClass("scroll-lock");
 });
 
-const now = new Date();
-const formatted = `${now.getFullYear()}.${(now.getMonth()+1).toString().padStart(2, '0')}.${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-document.addEventListener("DOMContentLoaded", () => {
+fetch("/js/data/last_update.json")
+  .then(res => res.json())
+  .then(data => {
     const el = document.querySelector('.footer_wrapper p:last-child');
-    if (el) el.textContent = 'Last Update : ' + formatted;
-});
-
+    if (el && data.last_updated) {
+      el.textContent = 'Last Update : ' + data.last_updated;
+    }
+  })
+  .catch(err => {
+    console.error("업데이트 시간 불러오기 실패:", err);
+  });
 
 //cash
 $(document).ready(function () {

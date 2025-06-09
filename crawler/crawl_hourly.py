@@ -9,6 +9,7 @@ from utils import send_discord_alert
 import os
 import json
 from datetime import datetime
+from utils import save_last_update
 
 def safe_run(name, func):
     try:
@@ -25,6 +26,7 @@ def run_hourly():
     safe_run("벅스", get_bugs_top100)
     safe_run("플로", get_flo_top100)
     safe_run("멜론 어워드", melon_award)
+    save_last_update()
     #check_and_run_vibe()
 
 if __name__ == "__main__":

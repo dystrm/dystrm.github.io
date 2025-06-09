@@ -6,6 +6,7 @@ from vibe import get_vibe_top100
 from melon_realtime import melon as melon_realtime
 from melon_award import melon_award
 from utils import send_discord_alert
+from utils import save_last_update
 
 def safe_run(name, func):
     try:
@@ -23,7 +24,7 @@ def run_all():
     safe_run("플로", get_flo_top100)
     safe_run("바이브", get_vibe_top100)
     safe_run("멜론 어워드", melon_award)
-    print("✅ 크롤링 완료 (트윗/푸시 없음)")
+    save_last_update()
 
 if __name__ == "__main__":
     run_all()
