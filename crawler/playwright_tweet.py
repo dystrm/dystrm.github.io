@@ -20,7 +20,7 @@ with open(file_path, "r", encoding="utf-8") as f:
 safe_print(f"[DEBUG] 트윗 내용 미리보기:\n{tweet_text}")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SESSION_PATH = os.path.join(BASE_DIR, "../secret/twitter_session.json")
+SESSION_PATH = os.path.join(BASE_DIR, "../secrets/twitter_session.json")
 
 def tweet_with_playwright(tweet_text: str):
     with sync_playwright() as p:
