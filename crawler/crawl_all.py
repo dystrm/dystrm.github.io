@@ -23,6 +23,7 @@ def run_all():
     safe_run("플로", get_flo_top100)
     safe_run("바이브", get_vibe_top100)
     safe_run("멜론 어워드", melon_award)
+    print("✅ 크롤링 완료 (트윗/푸시 없음)")
 
 if __name__ == "__main__":
     run_all()

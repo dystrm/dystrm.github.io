@@ -2,6 +2,7 @@ import datetime
 import subprocess
 import json
 import os
+import re
 import requests
 from config import TITLE, ARTIST
 from config import DISCORD_WEBHOOK_URL
@@ -9,6 +10,16 @@ from config import DISCORD_ALERT_ENABLED
 
 def log(msg):
     print(f"[{datetime.datetime.now().isoformat()}] {msg}")
+
+# ✅ 문자열 정규화 (곡명/아티스트 비교용)
+def normalize_text(text: str) -> str:
+    if not isinstance(text, str):
+        return ""
+    text = text.lower()
+    text = re.sub(r"\s+", "", text)             # 공백 제거
+    text = re.sub(r"[()\[\]{}]", "", text)      # 괄호 제거
+    text = re.sub(r"[^a-z0-9가-힣/]", "", text)  # 특수문자 제거
+    return text
 
 def save_chart(platform, rank):
     data_dir = "../js/data"

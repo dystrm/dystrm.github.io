@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from config import TITLE, ARTIST
-from utils import log, save_chart
+from utils import log, save_chart, normalize_text  # ✅ 추가
 
 def get_vibe_top100():
     try:
@@ -39,7 +39,6 @@ def get_vibe_top100():
             """)
             page.wait_for_timeout(4000)
 
-            # 300곡 로딩 대기
             try:
                 page.wait_for_function(
                     "() => document.querySelectorAll('div.tracklist table tbody tr').length >= 300",
@@ -49,20 +48,25 @@ def get_vibe_top100():
             except:
                 log("[VIBE] 300곡 로딩 실패 ⚠️")
 
-            # 페이지 파싱
             soup = BeautifulSoup(page.content(), "html.parser")
             browser.close()
 
             rows = soup.select("div.tracklist table tbody tr")
+
+            # ✅ 정규화된 기준값
+            target_title = normalize_text(TITLE)
+            target_artist = normalize_text(ARTIST)
+
             for row in rows:
                 try:
                     rank = row.select_one("td.rank span.text").text.strip()
-                    title = row.select_one("td.song .link_text span").text.strip().lower()
-                    artist = row.select_one("td.song .artist_sub").get("title", "").strip().lower()
+                    title = row.select_one("td.song .link_text span").text.strip()
+                    artist = row.select_one("td.song .artist_sub").get("title", "").strip()
 
-                    if TITLE.lower() in title and ARTIST.lower() in artist:
+                    # ✅ normalize_text로 정확 비교
+                    if normalize_text(title) == target_title and normalize_text(artist) == target_artist:
                         log(f"[VIBE] '{TITLE}' 현재 순위: {rank}")
-                        save_chart("vibe", int(rank))  # 현재 시각 기준 저장
+                        save_chart("vibe", int(rank))
                         return
                 except:
                     continue
