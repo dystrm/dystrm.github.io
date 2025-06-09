@@ -82,3 +82,25 @@ $(document).ready(function () {
         melonLink.attr("href", "https://www.melon.com/buy/meloncash/charge.htm");
     }
 });
+
+document.addEventListener("keydown", function (e) {
+  // F12
+  if (e.key === "F12") {
+    e.preventDefault();
+    return false;
+  }
+  // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+  if ((e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) || (e.ctrlKey && e.key === "U")) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+setInterval(function () {
+  const before = new Date();
+  debugger;
+  const after = new Date();
+  if (after - before > 100) {
+    location.reload(); // 콘솔 열면 새로고침
+  }
+}, 1000);
