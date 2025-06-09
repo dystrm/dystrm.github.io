@@ -81,7 +81,7 @@ def format_change(curr, prev, platform=None):
 
 def build_message():
     now = datetime.now().strftime("%y%m%d %H") + ":00"
-    lines = [f"✨ {TITLE} | {now}", ""]
+    lines = [f"💫 {TITLE} | {now}", ""]
     #lines = [f"✨ \"{TITLE}\" {now}", ""]
 
     for key, label in PLATFORMS.items():
