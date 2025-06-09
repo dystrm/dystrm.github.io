@@ -24,7 +24,7 @@ def run_hourly():
     safe_run("지니", get_genie_top200)
     safe_run("벅스", get_bugs_top100)
     safe_run("플로", get_flo_top100)
-    #safe_run("멜론 어워드", melon_award)
+    safe_run("멜론 어워드", melon_award)
     #check_and_run_vibe()
 
 if __name__ == "__main__":
