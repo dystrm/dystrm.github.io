@@ -1,7 +1,7 @@
 import os
 import sys
-from playwright.sync_api import sync_playwright
 import time
+from playwright.sync_api import sync_playwright
 
 def safe_print(text):
     try:
@@ -26,7 +26,7 @@ SESSION_PATH = os.path.join(BASE_DIR, "../secrets/twitter_session.json")
 
 def tweet_with_playwright(tweet_text: str):
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)  # ✅ 자동 실행용: headless=True
+        browser = p.chromium.launch(headless=True)
         context = browser.new_context(storage_state=SESSION_PATH)
         page = context.new_page()
 
@@ -34,7 +34,7 @@ def tweet_with_playwright(tweet_text: str):
             page.goto("https://twitter.com/compose/tweet", timeout=60000)
             page.wait_for_selector('div[data-testid="tweetTextarea_0"]', timeout=10000)
 
-            # 자동완성 및 오버레이 제거
+            # 오버레이 및 자동완성 제거
             page.evaluate("""() => {
                 document.querySelectorAll('[id^="typeaheadDropdown"]').forEach(el => el.remove());
                 const blockers = Array.from(document.querySelectorAll('div')).filter(el => {
@@ -44,7 +44,7 @@ def tweet_with_playwright(tweet_text: str):
                 blockers.forEach(el => el.style.pointerEvents = 'none');
             }""")
 
-            # ✅ 줄 단위 입력
+            # 텍스트 입력
             lines = tweet_text.split("\n")
             for line in lines:
                 page.evaluate(f"""
@@ -57,7 +57,7 @@ def tweet_with_playwright(tweet_text: str):
                 page.keyboard.press("Enter")
                 time.sleep(0.05)
 
-            # 트윗 버튼 활성화 대기
+            # 트윗 버튼 대기 및 클릭
             tweet_btn = page.locator('button[data-testid="tweetButton"]')
             tweet_btn.wait_for(state="attached", timeout=3000)
 
@@ -70,17 +70,19 @@ def tweet_with_playwright(tweet_text: str):
             else:
                 raise Exception("❌ 버튼이 비활성 상태입니다.")
 
-            # ✅ 트윗 버튼 클릭
             safe_print("🔘 트윗 버튼 클릭 시도 중...")
             tweet_btn.click(force=True)
             safe_print("✅ 트윗 버튼 클릭 완료")
+
+            # ✅ 버튼 클릭 성공 시, 곧바로 성공 출력
+            safe_print("트윗 전송 성공")
 
         except Exception as e:
             safe_print(f"❌ 트윗 전송 중 오류 발생: {e}")
 
         finally:
             context.storage_state(path=SESSION_PATH)
-            context.close()# ✅ 자동 종료 ON
-            browser.close()# ✅ 자동 종료 ON
+            context.close()
+            browser.close()
 
 tweet_with_playwright(tweet_text)

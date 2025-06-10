@@ -124,8 +124,8 @@ def main():
         push_to_github()
         return
 
-    elif now_hour in [0, 1, 11]:
-        print(f"[🌙] {now_hour}시: Playwright로 트윗 전송 시도")
+    elif now_hour in [0, 1, 12]:
+        print(f"{now_hour}시: Playwright로 트윗 전송 시도")
         try:
             with open("tweet.txt", "w", encoding="utf-8") as f:
                 f.write(tweet)
@@ -151,7 +151,7 @@ def main():
             else:
                 print("[X] Playwright 트윗 실패 로그 감지")
                 if DISCORD_ALERT_ENABLED:
-                    send_discord_alert(f"[Playwright] 트윗 실패 로그 감지\n\n📢 트윗 내용:\n{tweet}\n\n📄 로그:\n{stdout or stderr}")
+                    send_discord_alert(f"[Playwright] 트윗 실패 감지\n\n📢 트윗 내용:\n{tweet}")
 
         except Exception as e:
             print(f"[X] Playwright 트윗 예외 발생: {e}")
