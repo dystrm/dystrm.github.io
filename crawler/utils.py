@@ -81,19 +81,25 @@ def push_to_github():
     commit_msg = f"[자동업데이트] 차트 데이터 갱신: {now}"
 
     try:
+        # 원격 최신 내용 병합 (자동 merge)
+        subprocess.run(["git", "pull", "origin", "main"], check=True)
+
+        # 변경사항 스테이징
         subprocess.run(["git", "add", "."], check=True)
+
+        # 변경 사항 있는지 확인
         result = subprocess.run(["git", "diff", "--cached", "--quiet"])
         if result.returncode == 0:
             print("✅ Git 변경 사항 없음 (스테이징된 변경 없음). 푸시 생략")
             return
 
+        # 커밋 및 푸시
         subprocess.run(["git", "commit", "-m", commit_msg], check=True, stdout=subprocess.DEVNULL)
         subprocess.run(["git", "push"], check=True)
         print("✅ GitHub 푸시 완료!")
-        # send_discord_alert("✅ GitHub 푸시 완료!")
 
     except subprocess.CalledProcessError as e:
-        error_msg = f"GitHub 푸시 실패 ❌\n{e}"
+        error_msg = f"GitHub 명령 실패 ❌\n{e}"
         print(f"❌ {error_msg}")
         send_discord_alert(error_msg)
 
@@ -103,5 +109,5 @@ def push_to_github():
         send_discord_alert(error_msg)
 
 # 단독 테스트용
-if __name__ == "__main__":
-    send_discord_alert("✅ 디스코드 알림 테스트 메시지\n이 메시지가 보이면 연동 정상입니다.")
+# if __name__ == "__main__":
+#     send_discord_alert("✅ 디스코드 알림 테스트 메시지\n이 메시지가 보이면 연동 정상입니다.")
