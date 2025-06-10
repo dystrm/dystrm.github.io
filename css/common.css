@@ -2307,6 +2307,80 @@ body.scroll-lock {
     max-width: 480px;
   }
 }
+.contents.chart {
+  position: relative;
+  margin: 0 auto;
+  padding: 75px 0 40px;
+}
+.contents .chart_nav {
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+.contents .chart_nav .menu_depth_01 {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #eaeaea;
+}
+.contents .chart_nav .menu_depth_01 .flex {
+  max-width: var(--default-width);
+  height: 100%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 0;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.contents .chart_nav .menu_depth_01 ul {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 16px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.contents .chart_nav .menu_depth_01 ul > li {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  height: 100%;
+  cursor: pointer;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: #606060;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  line-height: 50px;
+  padding: 0 4px;
+}
+.contents .chart_nav .menu_depth_01 ul > li.active {
+  color: #222222;
+  border-bottom: 2px solid #3399cc;
+}
+.contents .chart_nav .menu_depth_01 ul > li:hover {
+  color: #3399cc;
+}
+
 .modal {
   position: fixed;
   left: 50%;
