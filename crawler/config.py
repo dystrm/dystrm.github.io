@@ -6,7 +6,7 @@ TITLE = "안녕, 우주 (Memory)"
 ARTIST = "도영 (DOYOUNG)"
 VIDEO_ID = "bpJS9ZnTkRw"
 DATA_DIR = "../js/data"
-DISCORD_ALERT_ENABLED = False
+DISCORD_ALERT_ENABLED = True
 
 # 비밀 키 경로 설정
 SECRETS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../secrets"))
