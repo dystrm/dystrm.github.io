@@ -64,10 +64,17 @@ def load_latest_rank(platform):
 def format_change(curr, prev, platform=None):
     if curr is None:
         return "❌"
-    
-    if platform == "vibe" and datetime.now().hour != 7:
+
+    now_hour = datetime.now().hour
+
+    # 멜론 Top 100은 1시 차트에서 등락 표시 없이 순위만 출력
+    if platform == "melon_top" and now_hour == 1:
+        return ""  # 등락 표시 없이 빈 문자열 반환
+
+    # VIBE는 7시 외 시간은 등락 없이 고정
+    if platform == "vibe" and now_hour != 7:
         return "(-)"
-    
+
     if prev is None:
         return "🆕"
 
