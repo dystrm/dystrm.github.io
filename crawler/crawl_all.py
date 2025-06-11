@@ -5,8 +5,7 @@ from flo import get_flo_top100
 from vibe import get_vibe_top100
 from melon_realtime import melon as melon_realtime
 from melon_award import melon_award
-from utils import send_discord_alert
-from utils import save_last_update
+from utils import send_discord_alert, save_last_update, pull_from_github
 
 def safe_run(name, func):
     try:
@@ -27,4 +26,5 @@ def run_all():
     save_last_update()
 
 if __name__ == "__main__":
+    pull_from_github()
     run_all()

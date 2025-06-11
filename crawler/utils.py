@@ -73,6 +73,30 @@ def send_discord_alert(message):
     except Exception as e:
         print(f"❌ 디스코드 전송 실패: {e}")
 
+# GitHub 풀
+def pull_from_github():
+    os.chdir(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+    try:
+        print("📡 Git fetch 중...")
+        subprocess.run(["git", "fetch", "origin"], check=True)
+
+        print("🔄 Git pull 중...")
+        subprocess.run(["git", "pull", "origin", "main"], check=True)
+
+        print("✅ Git fetch & pull 완료!")
+
+    except subprocess.CalledProcessError as e:
+        error_msg = f"Git fetch/pull 실패 ❌\n{e}"
+        print(error_msg)
+        send_discord_alert(error_msg)
+
+    except Exception as e:
+        error_msg = f"Git 일반 오류 ❌\n{e}"
+        print(error_msg)
+        send_discord_alert(error_msg)
+
+
 # GitHub 푸시
 def push_to_github():
     os.chdir(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -81,32 +105,27 @@ def push_to_github():
     commit_msg = f"[자동업데이트] 차트 데이터 갱신: {now}"
 
     try:
-        # 원격 최신 내용 병합 (자동 merge)
-        subprocess.run(["git", "pull", "origin", "main"], check=True)
-
-        # 변경사항 스테이징
         subprocess.run(["git", "add", "."], check=True)
 
-        # 변경 사항 있는지 확인
         result = subprocess.run(["git", "diff", "--cached", "--quiet"])
         if result.returncode == 0:
-            print("✅ Git 변경 사항 없음 (스테이징된 변경 없음). 푸시 생략")
+            print("✅ Git 변경 사항 없음. 푸시 생략")
             return
 
-        # 커밋 및 푸시
         subprocess.run(["git", "commit", "-m", commit_msg], check=True, stdout=subprocess.DEVNULL)
         subprocess.run(["git", "push"], check=True)
         print("✅ GitHub 푸시 완료!")
 
     except subprocess.CalledProcessError as e:
-        error_msg = f"GitHub 명령 실패 ❌\n{e}"
-        print(f"❌ {error_msg}")
+        error_msg = f"Git push 실패 ❌\n{e}"
+        print(error_msg)
         send_discord_alert(error_msg)
 
     except Exception as e:
-        error_msg = f"GitHub 일반 오류 ❌\n{e}"
-        print(f"❌ {error_msg}")
+        error_msg = f"Git 일반 오류 ❌\n{e}"
+        print(error_msg)
         send_discord_alert(error_msg)
+
 
 # 단독 테스트용
 # if __name__ == "__main__":

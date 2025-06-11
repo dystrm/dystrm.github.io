@@ -5,11 +5,10 @@ from flo import get_flo_top100
 from melon_realtime import melon as melon_realtime
 from melon_award import melon_award
 from vibe import get_vibe_top100
-from utils import send_discord_alert
 import os
 import json
 from datetime import datetime
-from utils import save_last_update
+from utils import send_discord_alert, save_last_update, pull_from_github, push_to_github
 
 def safe_run(name, func):
     try:
@@ -30,7 +29,9 @@ def run_hourly():
     #check_and_run_vibe()
 
 if __name__ == "__main__":
+    pull_from_github()
     run_hourly()
+    push_to_github()
 
 
 
