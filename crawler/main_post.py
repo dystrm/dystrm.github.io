@@ -131,7 +131,7 @@ def main():
         push_to_github()
         return
 
-    elif now_hour in [10, 11]:
+    elif now_hour in [10, 11, 14]:
         print(f"{now_hour}시: Playwright로 트윗 전송 시도")
         try:
             with open("tweet.txt", "w", encoding="utf-8") as f:

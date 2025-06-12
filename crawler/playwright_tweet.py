@@ -27,7 +27,7 @@ SESSION_PATH = os.path.join(BASE_DIR, "../secrets/twitter_session.json")
 def tweet_with_playwright(tweet_text: str):
     with sync_playwright() as p:
         #mac os headless=False, window os True
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=False)
         context = browser.new_context(storage_state=SESSION_PATH)
         page = context.new_page()
 
