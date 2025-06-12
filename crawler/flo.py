@@ -19,6 +19,7 @@ def get_flo_top100():
 
         # ✅ 차트 테이블 로딩 대기
         try:
+            # mac 30s
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, "table.track_list_table tbody tr"))
             )
@@ -67,3 +68,6 @@ def get_flo_top100():
     except Exception as e:
         log(f"[FLO] 크롤링 실패 ❌: {e}")
         save_chart("flo", None)
+
+# if __name__ == "__main__":
+#     get_flo_top100()
