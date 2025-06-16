@@ -13,7 +13,7 @@ def safe_run(name, func):
         func()
     except Exception as e:
         print(f"❌ {name} 크롤링 실패: {e}")
-        send_discord_alert(f"{name} 크롤링 실패 ❌\n{e}")
+        send_discord_alert(f"❌ {name} 크롤링 실패")
 
 def run_all():
     safe_run("멜론 Top", lambda: melon("melon_top"))
