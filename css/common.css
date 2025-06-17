@@ -640,6 +640,17 @@ body.scroll-lock {
           mask-repeat: no-repeat;
   font-size: 0;
 }
+.contents .sc_main .banner_wrap .left .btn_box .main_btn.ico_message::after {
+  -webkit-mask-image: url("../images/icon/ico_message.svg");
+          mask-image: url("../images/icon/ico_message.svg");
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  font-size: 0;
+}
 .contents .sc_main .banner_wrap .left .btn_box .main_btn.ico_coin::after {
   -webkit-mask-image: url("../images/icon/ico_coin.svg");
           mask-image: url("../images/icon/ico_coin.svg");

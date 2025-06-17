@@ -129,3 +129,7 @@
     @include icon($name:'ico_kbs', $format: 'png');
     background-size: 100%;
 }
+
+@mixin ico_message {
+    @include iconThem($name:'ico_message');
+}

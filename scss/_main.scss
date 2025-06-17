@@ -150,6 +150,12 @@
                             }
                         }
 
+                        &.ico_message {
+                            &::after {
+                                @include ico_message;
+                            }
+                        }
+
                         &.ico_coin {
                             &::after {
                                 @include ico_coin;
