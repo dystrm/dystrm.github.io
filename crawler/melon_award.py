@@ -1,12 +1,10 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from config import ARTIST
 from utils import log
 import datetime
 import json
 import os
-import time
 import re
 
 def save_award_chart(rank, title, percent, vote, desc, week=None, remain=None):
@@ -38,23 +36,52 @@ def save_award_chart(rank, title, percent, vote, desc, week=None, remain=None):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
+def parse_remain_label(remain_block):
+    try:
+        spans = remain_block.find_all("span")
+        nums = []
+        label = ""
+        for span in spans:
+            cls = span.get("class", [])
+            text = span.get_text(strip=True)
+
+            if "txt-day" in cls:
+                label += "".join(nums) + "일 "
+                nums = []
+            elif "txt-clock" in cls and "시간" in span.text:
+                label += "".join(nums) + "시간"
+                break
+            elif "txt-clock" in cls and "분" in span.text:
+                # 옵션: 분까지 포함하고 싶으면 여기서 처리
+                break
+            elif "txt-clock" in cls and "초" in span.text:
+                break
+            elif "num-wrap" in cls:
+                # num-wrap은 건너뛰고 내부 span 숫자만 읽도록 함
+                continue
+            elif any(c.startswith("num") for c in cls):
+                nums.append(text)
+
+        return label.strip()
+    except Exception as e:
+        print("[DEBUG] parse_remain_label error:", e)
+        return None
+
 def melon_award():
     url = "https://www.melon.com/melonaward/weekAward.htm"
 
-    options = Options()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument("user-agent=Mozilla/5.0")
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        context = browser.new_context()
+        page = context.new_page()
+        page.goto(url, timeout=60000)
+        page.wait_for_timeout(5000)
+        html = page.content()
+        browser.close()
 
-    driver = webdriver.Chrome(options=options)
-    driver.get(url)
-    time.sleep(3)
+    soup = BeautifulSoup(html, "html.parser")
 
-    soup = BeautifulSoup(driver.page_source, "html.parser")
-    driver.quit()
-
-    # ✅ 주차 처리
+    # ✅ 주차 정보
     try:
         month_tag = soup.select_one(".sec-title .num-term01")
         week_tag = soup.select_one(".sec-title .num-term02")
@@ -64,33 +91,14 @@ def melon_award():
     except:
         week_label = None
 
-    # ✅ 남은 시간 처리: N일 N시간 형식으로
+    # ✅ 남은 시간 정보
     try:
         remain_block = soup.select_one("dl.col-closing-time dd")
-        remain_label = ""
-
-        if remain_block:
-            text = remain_block.get_text(separator=" ", strip=True)
-            day_match = re.search(r"(\d+)일", text)
-            hour_match = re.search(r"(\d+)시간", text)
-
-            day = day_match.group(1) if day_match else None
-            hour = hour_match.group(1) if hour_match else None
-
-            if day and hour:
-                remain_label = f"{day}일 {hour}시간"
-            elif day:
-                remain_label = f"{day}일"
-            elif hour:
-                remain_label = f"{hour}시간"
-            else:
-                remain_label = None
-        else:
-            remain_label = None
-
+        remain_label = parse_remain_label(remain_block) if remain_block else None
     except:
         remain_label = None
 
+    # ✅ 아티스트 검색
     items = soup.select("li[class^='d_li_cookie_']")
     found = False
 
@@ -124,7 +132,7 @@ def melon_award():
                         except:
                             pass
 
-            log(f"[MELON_AWARD] '{ARTIST}' 순위: {rank}, {title}, {percent}, {vote}, {desc}, {week_label}, {remain_label}")
+            log(f"[MELON_AWARD] '{ARTIST}' 순위: {rank}, {title}, {percent}, {vote}, {desc}, {week_label}, {remain_label or '없음'}")
             save_award_chart(rank, title, percent, vote, desc, week_label, remain_label)
             found = True
             break
