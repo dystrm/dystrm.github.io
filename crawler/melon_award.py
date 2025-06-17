@@ -8,33 +8,45 @@ import os
 import re
 
 def save_award_chart(rank, title, percent, vote, desc, week=None, remain=None):
-    data_dir = "../js/data"
-    os.makedirs(data_dir, exist_ok=True)
-    path = os.path.join(data_dir, "melon_award.json")
+    import traceback
 
     try:
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except:
-        data = {
-            "artist": ARTIST,
-            "history": []
-        }
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        data_dir = os.path.normpath(os.path.join(BASE_DIR, "../js/data"))
+        os.makedirs(data_dir, exist_ok=True)
+        path = os.path.join(data_dir, "melon_award.json")
 
-    timestamp = datetime.datetime.now().isoformat()
-    data["history"].append({
-        "timestamp": timestamp,
-        "rank": rank,
-        "title": title,
-        "percent": percent,
-        "vote": vote,
-        "desc": desc,
-        "week": week,
-        "remain": remain
-    })
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            print("[WARN] 기존 파일 로드 실패, 새로 생성함:", e)
+            data = {
+                "artist": ARTIST,
+                "history": []
+            }
 
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        timestamp = datetime.datetime.now().isoformat()
+        data["history"].append({
+            "timestamp": timestamp,
+            "rank": rank,
+            "title": title,
+            "percent": percent,
+            "vote": vote,
+            "desc": desc,
+            "week": week,
+            "remain": remain
+        })
+
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+
+        print("✅ 저장 완료:", path)
+
+    except Exception as e:
+        print("❌ [FATAL] JSON 저장 실패:", e)
+        traceback.print_exc()
+
 
 def parse_remain_label(remain_block):
     try:

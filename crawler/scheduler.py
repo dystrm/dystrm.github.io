@@ -7,7 +7,7 @@ import sys
 print(f"⏳ 스케줄러 시작됨")
 
 def job_hourly():
-    print("[⏰] 정각+2분: 크롤링 & 트윗")
+    print("[⏰] 정각+10분: 크롤링 & 트윗")
     subprocess.run(["python", "crawl_hourly.py"])
     subprocess.run(["python", "main_post.py"])
 
