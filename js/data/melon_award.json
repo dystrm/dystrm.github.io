@@ -3430,6 +3430,16 @@
       "desc": "(3위와 67,980표차)",
       "week": "6월 4주차",
       "remain": "00일 00시간"
+    },
+    {
+      "timestamp": "2025-06-30T00:11:22.451653",
+      "rank": null,
+      "title": null,
+      "percent": null,
+      "vote": null,
+      "desc": null,
+      "week": "6월 4주차",
+      "remain": null
     }
   ]
 }
