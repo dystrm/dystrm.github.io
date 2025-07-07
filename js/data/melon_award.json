@@ -5290,6 +5290,16 @@
       "desc": null,
       "week": "7월 1주차",
       "remain": null
+    },
+    {
+      "timestamp": "2025-07-07T18:11:25.582000",
+      "rank": null,
+      "title": null,
+      "percent": null,
+      "vote": null,
+      "desc": null,
+      "week": "7월 2주차",
+      "remain": "06일 05시간"
     }
   ]
 }
