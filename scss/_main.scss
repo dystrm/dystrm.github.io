@@ -263,7 +263,8 @@
                     overflow: hidden;
                     padding: 20px;
                     cursor: pointer;
-                    background: rgba($albumn-color, 0.2);
+                    background: #fff;
+                    border: 1px solid $bd-color;
 
                     @include flex(center, space-between);
 

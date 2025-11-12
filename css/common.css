@@ -813,7 +813,8 @@ body.scroll-lock {
   overflow: hidden;
   padding: 20px;
   cursor: pointer;
-  background: rgba(237, 233, 230, 0.2);
+  background: #fff;
+  border: 1px solid #eaeaea;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -903,7 +904,7 @@ body.scroll-lock {
   font-size: 0;
   width: 16px;
   height: 16px;
-  background: #b39986;
+  background: #ffd8d8;
 }
 .contents .sc_main .banner_wrap .right .playlist .album .skip_forward::before {
   position: absolute;
@@ -932,7 +933,7 @@ body.scroll-lock {
   font-size: 0;
   width: 16px;
   height: 16px;
-  background: #b39986;
+  background: #ffd8d8;
 }
 .contents .sc_main .banner_wrap .right .playlist .info {
   width: calc(100% - 144px - 20px);
