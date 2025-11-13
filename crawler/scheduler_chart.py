@@ -10,13 +10,13 @@ print("⏳ 크롤링 전용 스케줄러 실행")
 def job_hourly_crawl():
     print("[⏰] 정각+10분: 시간별 크롤링 실행")
     subprocess.run(["python", "crawl_hourly.py"])
-    subprocess.run(["python", "test.py"])
+    subprocess.run(["python", "test_post.py"])
 
 # 매일 07:10: VIBE 포함 전체 크롤링
 def job_daily_vibe_crawl():
     print("[⏰] 07:10: VIBE 포함 전체 크롤링 실행")
     subprocess.run(["python", "crawl_all.py"])
-    subprocess.run(["python", "test.py"])
+    subprocess.run(["python", "test_post.py"])
 
 # 스케줄 등록
 for hour in range(24):

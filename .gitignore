@@ -5,6 +5,7 @@ venv/
 __pycache__/
 *.pyc
 crawler/__pycache__/
+crawler/x_profile/
 chart.html
 css/
 scss/
