@@ -112,7 +112,7 @@ def main():
     # 02~06시 중단
     if 2 <= now_hour < 7:
         print(f"[X] {now_hour}시: 트윗 전송 시간 아님. 생략.")
-        push_to_github()
+        #push_to_github()
         return
 
     # Playwright 자동 트윗 시간 (22, 23, 00, 01)
