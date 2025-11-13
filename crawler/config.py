@@ -2,7 +2,7 @@ import json
 import os
 
 # 기본 정보
-TITLE = "안녕, 우주 (Memory)"
+TITLE = "아픈 말"
 ARTIST = "도영 (DOYOUNG)"
 VIDEO_ID = "bpJS9ZnTkRw"
 DATA_DIR = "../js/data"

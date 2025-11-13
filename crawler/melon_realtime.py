@@ -1,9 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 from config import TITLE, ARTIST
-from utils import log, save_chart, normalize_text  # ✅ 추가
+from utils import log, save_chart, normalize_text
 import time
 
 def melon(chart_type="melon_realtime"):
@@ -17,45 +19,55 @@ def melon(chart_type="melon_realtime"):
 
     driver = webdriver.Chrome(options=options)
     driver.get(url)
-    time.sleep(2)
 
-    # ✅ 더보기 버튼 3회 시도
-    for _ in range(3):
-        try:
-            more_btn = driver.find_element(By.CLASS_NAME, "btn_more1")
-            if more_btn.is_displayed():
-                driver.execute_script("arguments[0].click();", more_btn)
-                time.sleep(1.5)
-            else:
-                break
-        except:
-            break
+    # ✅ JS 로딩 대기
+    try:
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "li .tit"))
+        )
+    except:
+        log("⚠️ 멜론 페이지 로드 지연")
 
-    soup = BeautifulSoup(driver.page_source, "html.parser")
+    time.sleep(1)
+    html = driver.page_source
     driver.quit()
 
+    soup = BeautifulSoup(html, "html.parser")
     rows = soup.select("li")
 
-    # ✅ 정규화된 기준
     target_title = normalize_text(TITLE)
     target_artist = normalize_text(ARTIST)
 
-    for row in rows:
-        try:
-            rank = int(row.select_one("div.rank").text.strip())
-            title = row.select_one("span.tit").text.strip()
-            artist = row.select_one("span.singer").text.strip()
+    found = False
 
-            # ✅ 정규화 후 정확 비교
-            if normalize_text(title) == target_title and normalize_text(artist) == target_artist:
-                log(f"[MELON_REALTIME] '{TITLE}' 순위: {rank}")
-                save_chart("melon_realtime", rank)
-                return
+    for row in rows:
+        title_el = row.select_one("span.tit")
+        artist_el = row.select_one("span.singer")
+        rank_el = row.select_one("div[class^='rank']")  # rank3, rank4 등 포함
+
+        if not (title_el and artist_el and rank_el):
+            continue
+
+        title = title_el.get_text(strip=True)
+        artist = artist_el.get_text(strip=True)
+        rank_text = rank_el.get_text(strip=True)
+
+        # ✅ '01' → 1로 변환
+        try:
+            rank = int(rank_text.lstrip('0') or 0)
         except:
             continue
 
-    log(f"[MELON_REALTIME] '{TITLE}' 순위 없음")
-    save_chart("melon_realtime", None)
+        if normalize_text(title) == target_title and normalize_text(artist) == target_artist:
+            log(f"[MELON_REALTIME] '{TITLE}' 순위: {rank}")
+            save_chart("melon_realtime", rank)
+            found = True
+            break
+
+    if not found:
+        log(f"[MELON_REALTIME] '{TITLE}' 순위 없음")
+        save_chart("melon_realtime", None)
+
 
 if __name__ == "__main__":
     melon()
