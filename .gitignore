@@ -1,6 +1,7 @@
 # secrets directory (do not upload secret keys)
 secrets/
 venv/
+crawler/
 # Python 캐시 제거
 __pycache__/
 *.pyc
