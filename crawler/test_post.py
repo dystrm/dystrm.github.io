@@ -116,7 +116,7 @@ def main():
         return
 
     # Playwright 자동 트윗 시간 (22, 23, 00, 01)
-    if now_hour in [22, 23, 0, 1]:
+    if now_hour in [10, 11, 0, 1]:
         print(f"{now_hour}시: Playwright 트윗 전송 시작")
 
         # tweet.txt 저장 (내용 전체 유지)
