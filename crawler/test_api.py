@@ -21,11 +21,17 @@ client = tweepy.Client(
     access_token_secret=TWITTER_API["access_token_secret"]
 )
 
-# 👇 test_post.py에서 넘겨준 트윗 내용 받기
-tweet_text = sys.argv[1]
+if __name__ == "__main__":
+    tweet_text = sys.argv[1]
+    try:
+        client.create_tweet(text=tweet_text)
+        print("트윗 전송 성공")
+    except Exception as e:
+        print("트윗 실패:", e)
 
-try:
-    client.create_tweet(text=tweet_text)
-    print("트윗 전송 성공")
-except Exception as e:
-    print("트윗 실패:", e)
+def post_to_x(text: str):
+    try:
+        client.create_tweet(text=text)
+        print("트윗 전송 성공 (post_to_x)")
+    except Exception as e:
+        print("트윗 실패 (post_to_x):", e)

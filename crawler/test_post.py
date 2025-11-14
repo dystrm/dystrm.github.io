@@ -1,4 +1,4 @@
-from test_tweet import post_to_x
+from test_api import post_to_x
 from youtube import get_youtube_view_count
 from utils import push_to_github
 from config import TITLE

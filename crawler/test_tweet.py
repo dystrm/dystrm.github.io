@@ -64,3 +64,6 @@ if __name__ == "__main__":
         exit(1)
 
     tweet_with_profile(text)
+
+def post_to_x(text: str):
+    tweet_with_profile(text)
