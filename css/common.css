@@ -5,7 +5,7 @@
     최종수정일 : 2025.05.20
     수정내역 :  2집 리뉴얼 v1
 /*------------------------------------------------------------------------------------------------------------*/
-/* 3399cc */
+/* abdea5 */
 /* image */
 /* icon */
 /* font */
@@ -210,8 +210,8 @@ body.scroll-lock {
 .header_wrapper .inner nav ul li.active a {
   font-family: "Pretendard Variable";
   font-weight: 700;
-  background: rgba(171, 222, 165, 0.6);
-  color: #606060;
+  background: rgba(51, 153, 204, 0.2);
+  color: #3399cc;
   border-radius: 16px;
 }
 .header_wrapper .inner nav .top_btn {
@@ -614,7 +614,7 @@ body.scroll-lock {
   display: inline-block;
   width: 18px;
   height: 18px;
-  background: #abdea5;
+  background: #3399cc;
 }
 .contents .sc_main .banner_wrap .left .btn_box .main_btn:hover {
   background: rgba(0, 0, 0, 0.08);
@@ -1013,7 +1013,7 @@ body.scroll-lock {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: #abdea5;
+  background: #3399cc;
 }
 .contents .sc .left {
   position: relative;
@@ -1041,7 +1041,210 @@ body.scroll-lock {
   padding: 20px 12px;
   width: 100%;
 }
-.contents .sc .left .box:first-of-type .box_tit::before {
+.contents .sc .left .box.vote .box_tit::before {
+  -webkit-mask-image: url("../images/icon/ico_hands.svg");
+          mask-image: url("../images/icon/ico_hands.svg");
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  font-size: 0;
+}
+.contents .sc .left .box.vote .vote_banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper {
+  position: relative;
+  width: 100%;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul {
+  position: relative;
+  width: 100%;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 0;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .img_box {
+  position: relative;
+  width: 50%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .img_box img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info {
+  position: relative;
+  width: 45%;
+  height: 228px;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 0;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .top .artist {
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #222222;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .top .more_btn {
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #222222;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .top .more_btn:hover {
+  border-bottom: 1px solid #222222;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .desc {
+  margin-top: 16px;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .desc .text {
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #222222;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .desc .date {
+  margin-top: 14px;
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #606060;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .desc .date + .text {
+  margin-top: 20px;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .vote_btn {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: #222222;
+  border-radius: 20px;
+  border: 1px solid #eaeaea;
+  width: 160px;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .vote_btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper .control_btn {
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 4px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 6px 10px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper .control_btn .pagination {
+  font-family: "Pretendard Variable";
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #222222;
+  text-align: center;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper .control_btn .pagination span {
+  font-family: "Pretendard Variable";
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #222222;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper .control_btn .next_btn {
+  -webkit-mask-image: url("../images/icon/ico_arrow_right.svg");
+          mask-image: url("../images/icon/ico_arrow_right.svg");
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  font-size: 0;
+  width: 12px;
+  height: 12px;
+  background: #222222;
+  cursor: pointer;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+}
+.contents .sc .left .box.vote .vote_banner .voteSwiper .control_btn .prev_btn {
+  -webkit-mask-image: url("../images/icon/ico_arrow_left.svg");
+          mask-image: url("../images/icon/ico_arrow_left.svg");
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  font-size: 0;
+  width: 12px;
+  height: 12px;
+  background: #222222;
+  cursor: pointer;
+  -webkit-mask-size: cover;
+          mask-size: cover;
+}
+.contents .sc .left .box.music .box_tit::before {
   -webkit-mask-image: url("../images/icon/ico_music.svg");
           mask-image: url("../images/icon/ico_music.svg");
   -webkit-mask-size: contain;
@@ -1629,14 +1832,14 @@ body.scroll-lock {
   font-weight: 700;
   font-weight: 600;
   font-size: 2.4rem;
-  color: #abdea5;
+  color: #3399cc;
 }
 .contents .sc .right .box.week_vote .vote_box .bottom_info .vote_count .vote {
   font-family: "Pretendard Variable";
   font-weight: 700;
   font-weight: 600;
   font-size: 2.4rem;
-  color: #abdea5;
+  color: #3399cc;
 }
 .contents .sc .right .box.week_vote .vote_box .bottom_info .vote_count .desc {
   font-family: "Pretendard Variable";
@@ -1790,6 +1993,69 @@ body.scroll-lock {
   .contents .sc .left .box .count_box div:first-of-type {
     padding-right: 10px;
   }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    gap: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .img_box {
+    width: 100%;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .img_box img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .top .artist {
+    font-size: 1.8rem;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .desc {
+    margin-top: 16px;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .desc .text {
+    font-size: 1.6rem;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .desc .date {
+    margin-top: 10px;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .desc .date + .text {
+    margin-top: 16px;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper ul .swiper-slide .info .vote_btn {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    -webkit-transform: none;
+            transform: none;
+    display: block;
+    margin: 20px auto;
+    width: 160px;
+    height: 36px;
+  }
+  .contents .sc .left .box.vote .vote_banner .voteSwiper .control_btn {
+    -webkit-transform: none;
+            transform: none;
+    right: 0;
+    bottom: 0;
+    left: auto;
+  }
   .contents .sc .right {
     width: 100%;
   }
@@ -1929,10 +2195,10 @@ body.scroll-lock {
 }
 .contents .sub_nav .menu_depth_01 ul > li.active {
   color: #222222;
-  border-bottom: 2px solid #abdea5;
+  border-bottom: 2px solid #3399cc;
 }
 .contents .sub_nav .menu_depth_01 ul > li:hover {
-  color: #222222;
+  color: #3399cc;
 }
 .contents .sub_nav .menu_depth_01 .oneclick_btn {
   cursor: pointer;
@@ -2114,14 +2380,14 @@ body.scroll-lock {
 .contents .sub_contents .category_box .box ul li.active {
   font-family: "Pretendard Variable";
   font-weight: 500;
-  color: #222222;
-  background: rgba(171, 222, 165, 0.2);
+  color: #3399cc;
+  background: rgba(0, 0, 0, 0.02);
   border-radius: 0 4px 4px 0;
 }
 .contents .sub_contents .category_box .box ul li:hover {
   font-family: "Pretendard Variable";
   font-weight: 500;
-  color: #222222;
+  color: #3399cc;
 }
 .contents .sub_contents .category_box .box .image_box {
   width: calc(80% - 30px);
@@ -2388,10 +2654,10 @@ body.scroll-lock {
 }
 .contents .chart_nav .menu_depth_01 ul > li.active {
   color: #222222;
-  border-bottom: 2px solid #abdea5;
+  border-bottom: 2px solid #3399cc;
 }
 .contents .chart_nav .menu_depth_01 ul > li:hover {
-  color: #abdea5;
+  color: #3399cc;
 }
 
 .modal {
