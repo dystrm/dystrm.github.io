@@ -133,3 +133,7 @@
 @mixin ico_message {
     @include iconThem($name:'ico_message');
 }
+
+@mixin ico_hands {
+    @include iconThem($name:'ico_hands');
+}

@@ -46,8 +46,8 @@
                     }
 
                     &:hover {
-                        //color: $point-color;
-                        color: $ft-main-color;
+                        color: $point-color;
+                        //color: $ft-main-color;
                     }
                 }
             }
@@ -210,17 +210,17 @@
 
                         &.active {
                             @include ftM;
-                            // color: $point-color;
-                            // background: $sub-btn-bg-color;
-                            color: $ft-main-color;
-                            background: rgba($point-color, 0.2);
+                            color: $point-color;
+                            background: $sub-btn-bg-color;
+                            // color: $ft-main-color;
+                            // background: rgba($point-color, 0.2);
                             border-radius: 0 4px 4px 0;
                         }
 
                         &:hover {
                             @include ftM;
-                            //color: $point-color;
-                            color: $ft-main-color;
+                            color: $point-color;
+                            //color: $ft-main-color;
                         }
                     }
                 }

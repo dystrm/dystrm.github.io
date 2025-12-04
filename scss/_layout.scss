@@ -62,9 +62,9 @@ body {
                     &.active {
                         a {
                             @include ftB;
-                            background: rgba($point-color, 0.6);
-                            //color: $point-color;
-                            color: $ft-sub-color;
+                            background: rgba($point-color, 0.2);
+                            color: $point-color;
+                            //color: $ft-sub-color;
                             border-radius: 16px;
                         }
 

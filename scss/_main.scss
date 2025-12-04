@@ -388,7 +388,154 @@
                 padding: 20px 12px;
                 width: 100%;
 
-                &:first-of-type {
+                &.vote {
+                    .box_tit {
+                        &::before {
+                            @include ico_hands;
+                        }
+                    }
+
+                    .vote_banner {
+                        position: relative;
+                        width: 100%;
+                        overflow: hidden;
+
+                        .voteSwiper {
+                            position: relative;
+                            width: 100%;
+
+                            ul {
+                                position: relative;
+                                width: 100%;
+
+                                .swiper-slide {
+                                    @include flex(flex-start, space-between);
+
+                                    .img_box {
+                                        position: relative;
+                                        width: 50%;
+                                        border-radius: 4px;
+                                        overflow: hidden;
+
+                                        img {
+                                            width: 100%;
+                                            aspect-ratio: 1/1;
+                                            object-fit: cover;
+                                        }
+                                    }
+
+                                    .info {
+                                        position: relative;
+                                        width: 45%;
+                                        height: 228px;
+
+                                        .top {
+                                            @include flex(center, space-between);
+
+                                            .artist {
+                                                @include ftB;
+                                                font-size: rem(16);
+                                                color: $ft-main-color;
+                                            }
+
+                                            .more_btn {
+                                                @include ftM;
+                                                font-size: rem(12);
+                                                color: $ft-main-color;
+                                                transition: all 0.3s ease-in-out;
+
+                                                &:hover {
+                                                    border-bottom: 1px solid $ft-main-color;
+                                                }
+                                            }
+                                        }
+
+                                        .desc {
+                                            margin-top: 16px;
+
+                                            .text {
+                                                @include ftB;
+                                                font-size: rem(14);
+                                                color: $ft-main-color;
+                                            }
+
+                                            .date {
+                                                margin-top: 14px;
+                                                @include ftM;
+                                                font-size: rem(12);
+                                                color: $ft-sub-color;
+
+                                                &+.text {
+                                                    margin-top: 20px;
+                                                }
+                                            }
+                                        }
+
+                                        .vote_btn {
+                                            @include centerX($bottom : 0);
+                                            @include ftM;
+                                            font-size: rem(14);
+                                            color: $ft-main-color;
+                                            border-radius: 20px;
+                                            border: 1px solid $bd-color;
+                                            width: 160px;
+                                            height: 36px;
+                                            text-align: center;
+                                            line-height: 36px;
+                                            transition: all 0.3s ease-in-out;
+
+                                            &:hover {
+                                                background: $main-btn-hv-color;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .control_btn {
+                                z-index: 10;
+                                @include centerX($bottom: 0);
+                                @include flex(center, center, 4px);
+                                padding: 6px 10px;
+                                border-radius: 16px;
+                                background: rgba(255, 255, 255, 0.6);
+
+                                .pagination {
+                                    @include ftR;
+                                    font-size: rem(12);
+                                    color: $ft-main-color;
+                                    text-align: center;
+
+                                    span {
+                                        @include ftR;
+                                        font-size: rem(12);
+                                        color: $ft-main-color;
+                                    }
+                                }
+
+                                .next_btn {
+                                    @include ico_arrow_right;
+                                    width: 12px;
+                                    height: 12px;
+                                    background: $ft-main-color;
+                                    cursor: pointer;
+                                    mask-size: cover;
+                                }
+
+                                .prev_btn {
+                                    @include ico_arrow_left;
+                                    width: 12px;
+                                    height: 12px;
+                                    background: $ft-main-color;
+                                    cursor: pointer;
+                                    mask-size: cover;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.music {
                     .box_tit {
                         &::before {
                             @include ico_music;
@@ -905,6 +1052,77 @@
                             }
                         }
                     }
+
+
+
+                    &.vote {
+                        .vote_banner {
+                            .voteSwiper {
+                                ul {
+                                    .swiper-slide {
+                                        @include flex(flex-start, space-between, 0, column);
+
+                                        .img_box {
+                                            width: 100%;
+
+                                            img {
+                                                width: 100%;
+                                                aspect-ratio: 1/1;
+                                                object-fit: cover;
+                                            }
+                                        }
+
+                                        .info {
+                                            margin-top: 20px;
+                                            width: 100%;
+                                            height: auto;
+
+                                            .top {
+                                                .artist {
+                                                    font-size: rem(18);
+                                                }
+                                            }
+
+                                            .desc {
+                                                margin-top: 16px;
+
+                                                .text {
+                                                    font-size: rem(16);
+                                                }
+
+                                                .date {
+                                                    margin-top: 10px;
+
+                                                    &+.text {
+                                                        margin-top: 16px;
+                                                    }
+                                                }
+                                            }
+
+                                            .vote_btn {
+                                                position: relative;
+                                                bottom: auto;
+                                                left: auto;
+                                                transform: none;
+                                                display: block;
+                                                margin: 20px auto;
+                                                width: 160px;
+                                                height: 36px;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .control_btn {
+                                    transform: none;
+                                    right: 0;
+                                    bottom: 0;
+                                    left: auto;
+                                }
+                            }
+                        }
+                    }
+
                 }
             }
 
@@ -935,6 +1153,7 @@
                         height: auto;
                         flex-wrap: wrap;
                         gap: 10px;
+
                         .main_btn {
                             width: calc(50% - 5px);
                         }
