@@ -137,3 +137,13 @@
 @mixin ico_hands {
     @include iconThem($name:'ico_hands');
 }
+
+@mixin ico_show {
+    @include icon($name:'ico_show', $format: 'png');
+    background-size: contain;
+}
+
+@mixin ico_mubeat {
+    @include icon($name:'ico_mubeat', $format: 'jpg');
+    background-size: contain;
+}

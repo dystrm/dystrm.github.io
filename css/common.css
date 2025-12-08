@@ -2934,4 +2934,131 @@ body.scroll-lock {
   .modal .modal_contents.type_click {
     max-width: 90%;
   }
+}
+.contents.sms {
+  position: relative;
+  margin: 0 auto;
+  max-width: 768px;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.contents.sms .img_box {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.contents.sms .img_box img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.contents.sms .btn_box {
+  max-width: 320px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1.6rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.contents.sms .btn_box a {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  height: 52px;
+  border-radius: 52px;
+  background: #fff;
+  -webkit-box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+  font-size: 1.6rem;
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  color: #222222;
+}
+.contents.sms .btn_box a.sms_btn::before {
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  content: "";
+  display: inline-block;
+  background: url("../images/icon/ico_show.png") no-repeat center;
+  font-size: 0;
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+}
+.contents.sms .btn_box a.sms_btn::after {
+  position: absolute;
+  right: 24px;
+  bottom: 10px;
+  content: "#0505 도영";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #bbb;
+}
+.contents.sms .btn_box a.mubeat_btn::before {
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  content: "";
+  display: inline-block;
+  background: url("../images/icon/ico_mubeat.jpg") no-repeat center;
+  font-size: 0;
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.contents.sms .btn_box a.mubeat_btn::after {
+  position: absolute;
+  right: 24px;
+  bottom: 10px;
+  content: "계정 당 최대 5표";
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #bbb;
 }/*# sourceMappingURL=common.css.map */

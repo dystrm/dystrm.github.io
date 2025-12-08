@@ -1,0 +1,81 @@
+@charset 'utf-8';
+
+.contents {
+    &.sms {
+        position: relative;
+        margin: 0 auto;
+        max-width: 768px;
+        width: 100%;
+        height: 100dvh;
+        min-height: 100dvh;
+        @include flex(center, center, rem(20), column);
+
+        .img_box {
+            max-width: 320px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .btn_box {
+            max-width: 320px;
+            width: 100%;
+            @include flex(center, center, rem(16), column);
+
+            a {
+                position: relative;
+                @include flex(center, center);
+                width: 100%;
+                height: 52px;
+                border-radius: 52px;
+                background: #fff;
+                box-shadow: 0 14px 30px rgba(0, 0, 0, 0.05);
+                font-size: rem(16);
+                @include ftB;
+                color: $ft-main-color;
+
+                &.sms_btn {
+                    &::before {
+                        @include centerY($left: 24px);
+                        @include content;
+                        @include ico_show;
+                        width: 40px;
+                        height: 40px;
+                    }
+
+                    &::after {
+                        @include absolute($right: 24px, $bottom: 10px);
+                        content: '#0505 도영';
+                        @include ftM;
+                        font-size: rem(12);
+                        color: #bbb;
+                    }
+                }
+
+                &.mubeat_btn {
+                    &::before {
+                        @include centerY($left: 24px);
+                        @include content;
+                        @include ico_mubeat;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                    }
+
+                    &::after {
+                        @include absolute($right: 24px, $bottom: 10px);
+                        content: '계정 당 최대 5표';
+                        @include ftM;
+                        font-size: rem(12);
+                        color: #bbb;
+                    }
+                }
+            }
+        }
+    }
+}
