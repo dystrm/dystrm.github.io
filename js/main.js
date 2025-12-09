@@ -1,7 +1,7 @@
    document.addEventListener('DOMContentLoaded', function () {
        var apiKey = 'AIzaSyBlutTPaSd_dQRXEHXfyKs-SkbGjYfaf-c';
        var apiUrl = 'https://www.googleapis.com/youtube/v3/videos';
-       var videoId = 'bpJS9ZnTkRw';
+       var videoId = 'zpPFHclAOoM';
 
        fetch(`${apiUrl}?part=statistics&id=${videoId}&key=${apiKey}`)
            .then(response => response.json())
