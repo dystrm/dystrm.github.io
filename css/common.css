@@ -905,7 +905,7 @@ body.scroll-lock {
   font-size: 0;
   width: 16px;
   height: 16px;
-  background: #ffd8d8;
+  background: #8bc7a3;
 }
 .contents .sc_main .banner_wrap .right .playlist .album .skip_forward::before {
   position: absolute;
@@ -934,7 +934,7 @@ body.scroll-lock {
   font-size: 0;
   width: 16px;
   height: 16px;
-  background: #ffd8d8;
+  background: #8bc7a3;
 }
 .contents .sc_main .banner_wrap .right .playlist .info {
   width: calc(100% - 144px - 20px);
