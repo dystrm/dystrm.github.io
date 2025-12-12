@@ -480,6 +480,16 @@
       "desc": null,
       "week": "12월 2주차",
       "remain": "02일 15시간"
+    },
+    {
+      "timestamp": "2025-12-12T09:11:30.317809",
+      "rank": null,
+      "title": null,
+      "percent": null,
+      "vote": null,
+      "desc": null,
+      "week": "12월 2주차",
+      "remain": "02일 14시간"
     }
   ]
 }
