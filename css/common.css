@@ -2942,6 +2942,8 @@ body.scroll-lock {
   width: 100%;
   height: 100dvh;
   min-height: 100dvh;
+  overflow-y: auto;
+  -ms-overflow-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2957,8 +2959,11 @@ body.scroll-lock {
       -ms-flex-direction: column;
           flex-direction: column;
 }
+.contents.sms::-webkit-scrollbar {
+  display: none;
+}
 .contents.sms .img_box {
-  max-width: 320px;
+  max-width: 280px;
   width: 100%;
   border-radius: 12px;
   overflow: hidden;

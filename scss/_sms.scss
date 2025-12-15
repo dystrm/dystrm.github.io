@@ -8,10 +8,17 @@
         width: 100%;
         height: 100dvh;
         min-height: 100dvh;
+        overflow-y: auto;
+        -ms-overflow-style: none;
+
         @include flex(center, center, rem(20), column);
 
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
         .img_box {
-            max-width: 320px;
+            max-width: 280px;
             width: 100%;
             border-radius: 12px;
             overflow: hidden;
@@ -85,7 +92,7 @@
             line-height: 1.4;
 
             span {
-                background: rgba($point-color,0.25);
+                background: rgba($point-color, 0.25);
                 @include ftB;
                 font-size: rem(16);
             }
