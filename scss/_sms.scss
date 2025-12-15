@@ -77,5 +77,18 @@
                 }
             }
         }
+
+        p {
+            @include ftM;
+            font-size: rem(14);
+            text-align: center;
+            line-height: 1.4;
+
+            span {
+                background: rgba($point-color,0.25);
+                @include ftB;
+                font-size: rem(16);
+            }
+        }
     }
 }

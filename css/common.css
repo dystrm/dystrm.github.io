@@ -3061,4 +3061,17 @@ body.scroll-lock {
   font-weight: 500;
   font-size: 1.2rem;
   color: #bbb;
+}
+.contents.sms p {
+  font-family: "Pretendard Variable";
+  font-weight: 500;
+  font-size: 1.4rem;
+  text-align: center;
+  line-height: 1.4;
+}
+.contents.sms p span {
+  background: rgba(51, 153, 204, 0.25);
+  font-family: "Pretendard Variable";
+  font-weight: 700;
+  font-size: 1.6rem;
 }/*# sourceMappingURL=common.css.map */
